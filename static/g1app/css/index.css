@@ -1,0 +1,613 @@
+
+
+/* 2. Top Countdown Bar Styling */
+.countdown-bar {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--f1-countdown-bg);
+    color: var(--f1-light-grey);
+    font-size: 14px;
+    gap: 40px;
+}
+
+.race-info .location {
+    font-weight: bold;
+    color: var(--f1-text-color);
+    margin-right: 5px;
+}
+
+.countdown-timer {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--f1-red);
+}
+
+.live-timing {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+}
+
+.live-timing .tag {
+    background-color: white;
+    color: black;
+    padding: 2px 5px;
+    font-weight: bold;
+}
+
+/* 3. Main Content/Hero Section Styling */
+.hero-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 15px;
+    padding: 20px;
+    max-width: 1400px; 
+    margin: 0 auto;
+}
+
+.hero-main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px; 
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)); 
+    padding: 30px 20px 20px;
+    color: var(--f1-text-color);
+}
+
+.category-tag {
+    display: inline-block;
+    color: var(--f1-red);
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.image-overlay h2 {
+    font-size: 28px;
+    margin: 0;
+    line-height: 1.2;
+}
+
+
+
+/* Sidebar Styling */
+/* --- Hero Sidebar Thumbnail Styling --- */
+
+/* Base container for all thumbnails */
+.item-thumbnail {
+    width: 80px; 
+    height: 80px; 
+    min-width: 80px; 
+    background-color: #333; 
+    margin-right: 15px; 
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden; 
+}
+
+/* Ensure the image fills the thumbnail container */
+.item-thumbnail .thumb-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+
+/* Style for the sidebar container (already in your file) */
+.hero-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Time styling */
+.article-time {
+    font-size: 0.75rem;
+    color: #999;
+    display: block;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+}
+
+/* Style for the individual article items (already in your file) */
+.sidebar-item {
+    display: flex;
+    align-items: center; 
+    padding: 12px 10px; 
+    background-color: var(--f1-nav-bg); 
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+/* HIGHLIGHTS Tag (Reused & Correct) */
+.highlight-tag {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--f1-red);
+    color: white;
+    padding: 2px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 2px;
+    z-index: 5; 
+}
+
+
+.video-overlay-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid var(--f1-red);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    opacity: 0.9;
+    background-color: transparent; 
+    z-index: 5; 
+}
+
+
+
+/*  <!-- FEATURED VIDEO --> */
+
+
+/* Featured Video Section Styling */
+.featured-video-section {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--f1-text-color);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.view-all {
+    color: var(--f1-light-grey);
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.scroll-btn {
+    background-color: transparent;
+    color: var(--f1-text-color);
+    border: 1px solid var(--f1-light-grey);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    transition: all 0.2s;
+}
+
+.video-carousel {
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll; 
+    padding-bottom: 20px; 
+    scroll-behavior: smooth; 
+    scrollbar-width: none; 
+}
+
+.video-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Video Card Styling */
+.video-card {
+    flex: 0 0 280px; 
+    background-color: var(--f1-dark-bg);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+/* Container for the video element and overlays */
+.video-container {
+    position: relative;
+    padding-top: 56.25%;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 10px; 
+}
+
+/* The actual HTML5 video player element */
+.f1-video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Overlays (Duration and Play Button) */
+.duration,
+.play-icon {
+    position: absolute;
+    z-index: 10;
+}
+
+.duration {
+    bottom: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--f1-text-color);
+    padding: 2px 5px;
+    font-size: 12px;
+}
+
+.play-icon {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--f1-red);
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(35% 25%, 35% 75%, 75% 50%);
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+.video-card:hover .play-icon {
+    opacity: 1;
+}
+
+.video-title {
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 0 5px 10px;
+    min-height: 40px; 
+}
+
+/* editors pics */
+
+
+/* editors picked */
+/* Editor's Picks Section Styling */
+.editors-picks-section {
+    padding: 40px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.editors-picks-section .header-controls {
+    margin-bottom: 20px;
+}
+
+.editors-picks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    grid-template-rows: repeat(2, minmax(250px, 1fr)); 
+    gap: 15px;
+    overflow-x: initial; 
+    padding-bottom: 0; 
+}
+
+.editor-pick-card.main-card {
+    grid-row: span 2; 
+    grid-column: span 2; 
+    width: initial;
+    /* height: initial; */
+    display: flex;
+    flex-direction: column;
+        height: 673px;
+}
+.editor-pick-card:not(.main-card) {
+    grid-row: span 1;
+    grid-column: span 1;
+}
+.editors-picks-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.editor-pick-card {
+    background-color: var(--f1-nav-bg); 
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.editor-pick-card:hover {
+    background-color: #2b2b34; 
+}
+
+.card-image {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover;
+    display: block;
+}
+
+.card-image-small {
+    width: 100%;
+    height: 260px; 
+    object-fit: cover;
+    display: block;
+}
+
+.card-image-wide {
+    width: 100%;
+    height: 180px; 
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.card-content p {
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--f1-light-grey);
+}
+
+.main-card {
+    grid-row: span 3;
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    height: 494px;
+}
+
+
+.main-card .card-content {
+    flex-grow: 1; 
+    display: flex;
+    align-items: flex-end; 
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}
+
+.main-card .card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    max-height: 400px; 
+}
+.main-card .card-content {
+    z-index: 1; 
+}
+
+
+/* drivers and team */
+
+
+.red-bar {
+    height: 10px;
+    background-color: #e60000; /* F1-style red */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 30px;
+    letter-spacing: 5px;
+}
+
+/* --- Toggle Navigation Styling --- */
+.standings-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #333; /* Separator line */
+    padding-bottom: 5px;
+    width: fit-content;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.1em;
+    font-weight: 700;
+    padding: 5px 0;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.toggle-btn:hover {
+    color: #ccc;
+}
+
+.toggle-btn.active {
+    color: white;
+}
+
+.toggle-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -7px; /* Adjust based on border-bottom thickness */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e60000; /* Active indicator color */
+}
+
+/* --- Standings Grid Styling --- */
+.standings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    gap: 20px;
+}
+
+.standings-section.hidden {
+    display: none;
+}
+
+.standings-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 20px;
+    height: 400px; /* Consistent height for all cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Background Colors */
+.blue-bg { background: linear-gradient(135deg, #0d1a3a, #1a3360); }
+.orange-bg { background: linear-gradient(135deg, #ff8c00, #e65c00); }
+.green-bg { background: linear-gradient(135deg, #004d40, #008060); }
+
+/* Position Styling */
+.position {
+    font-size: 3em;
+    font-weight: 900;
+    line-height: 1;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.first-place {
+    /* Slightly bigger/more prominent card for 1st place if desired */
+    /* Example: transform: scale(1.03); */
+}
+
+/* --- Driver Card Specific Styling --- */
+.driver-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 80%; /* Takes up most of the card height */
+    width: auto;
+    object-fit: contain;
+    pointer-events: none; /* Prevents image from interfering with clicks */
+    z-index: 1;
+    opacity: 0.9;
+    transform: translateX(10%); /* Shift driver slightly to the right */
+}
+
+.info {
+    z-index: 2;
+    position: relative;
+}
+
+.name {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 90px 0 5px 0;
+}
+
+.team {
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.points {
+    z-index: 2;
+    font-size: 3em;
+    font-weight: 900;
+    margin: 0;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.pts {
+    font-size: 0.4em;
+    font-weight: 400;
+    vertical-align: super;
+}
+
+
+/* --- Team Card Specific Styling --- */
+.points-team {
+    font-size: 2.2em;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.drivers {
+    font-size: 1em;
+    margin: 2px 0;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.car-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 90%;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    opacity: 0.9;
+    /* Adjust position to be visible at the bottom */
+    transform: translateY(10%); 
+}
+
+

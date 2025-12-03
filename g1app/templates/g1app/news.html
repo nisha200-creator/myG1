@@ -1,0 +1,306 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest F1 News</title>
+    <link rel="stylesheet" href="{% static 'g1app/css/news.css' %}">
+    <link rel="stylesheet" href="{% static 'g1app/css/header_footer.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .user-menu {
+            position: relative;
+            list-style: none;
+        }
+
+        /* USER INFO (NAME + IMAGE + ARROW) */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff70;
+        }
+
+        .user-name {
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .arrow-icon {
+            color: #fff;
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        /* ROTATE ARROW WHEN ACTIVE */
+        .arrow-rotate {
+            transform: rotate(180deg);
+        }
+
+        /* DROPDOWN */
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 160px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none !important;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .dropdown-show {
+            display: block !important;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* EACH LINE */
+        .dropdown-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: red;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static '/g1app/images/logo.png' %}" alt="F1 Logo" class="logo-img">
+
+            </a>
+        </div>
+
+        <nav class="primary-nav">
+            <ul>
+                <!-- <li><a href="#">Race Series</a></li> -->
+                <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                <li><a href="#">Results</a></li>
+                <li><a href="{% url 'news' %}">News</a></li>
+
+                <li><a href="#">Drivers</a></li>
+                <li><a href="{% url 'teams' %}">Teams</a></li>
+                <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
+                <li><a href="#">G1 Members' Area</a></li>
+            </ul>
+        </nav>
+        <nav class="secondary-nav">
+            <ul>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="#">Hospitality</a></li>
+                <li><a href="#">Experiences</a></li>
+
+                {% if request.session.user_email %}
+
+                <!-- USER MENU -->
+                <li class="user-menu">
+                    <div class="user-info" id="userToggle">
+                        <img src="{% static 'g1app/images/logo.png' %}" class="user-avatar" alt="User">
+                        <span class="user-name">{{ request.session.user_name }}</span>
+
+                        <!-- ⬇ Arrow icon -->
+                        <span id="arrowBtn" class="arrow-icon">&#9662;</span>
+                    </div>
+
+                    <!-- DROPDOWN -->
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="{% url 'logout_user' %}">Logout</a></li>
+                    </ul>
+                </li>
+
+                {% else %}
+                <li><a href="{% url 'Register_signIn' %}">Sign In</a></li>
+                {% endif %}
+
+                <li><button class="subscribe-btn">Subscribe</button></li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <div class="news-container">
+        <h1>LATEST F1 NEWS</h1>
+
+        <div class="filter-bar">
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="news">News</button>
+                <button class="filter-btn" data-category="driver">Driver</button>
+                <button class="filter-btn" data-category="highlights">Highlights</button>
+                <button class="filter-btn" data-category="debrief">Friday Debrief</button>
+                <button class="filter-btn" data-category="video">Video</button>
+            </div>
+        </div>
+
+        <div class="news-grid">
+
+            {% for article in articles %}
+            <a href="{% url 'article_detail' article.id %}" class="news-article"
+                data-category="{{ article.category|lower }}">
+
+                <div class="article-image-wrapper">
+                    <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" class="article-image">
+                </div>
+
+                <div class="article-content">
+                    <p class="article-title">{{ article.title }}</p>
+                    <span class="article-time">{{ article.time_ago }}</span>
+                </div>
+
+            </a>
+            {% endfor %}
+            <p id="emptyMessage" style="display:none; text-align:center; color:#888; font-size:1.1em; margin-top:20px;">
+                No articles available.
+            </p>
+
+        </div>
+
+        <button id="load-more-btn" class="load-more-btn">LOAD MORE</button>
+    </div>
+
+
+
+
+    <footer class="f1-footer">
+        <div class="footer-row footer-app-banner">
+            <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
+            <div class="app-stores">
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-row footer-main-nav">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#">Schedule</a></li>
+                    <li><a href="#">Drivers</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Teams</a></li>
+                    <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
+                    <li><a href="#">Cookie Preferences</a></li>
+                    <!-- <li class="more-link"><a href="#">More <span class="dropdown-arrow"></span></a></li> -->
+                </ul>
+            </nav>
+            <div class="f1-red-line">
+                <span class="f1-logo-mini">G1</span>
+            </div>
+        </div>
+
+        <div class="footer-row footer-bottom-bar">
+            <div class="social-links">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+
+            <button class="display-mode-selector">
+                Display mode
+                <span class="dropdown-arrow-icon"></span>
+            </button>
+
+            <p class="copyright">
+                © 2003-2025 G1 World Championship Limited
+            </p>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+
+    <!-- filter js -->
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const articles = document.querySelectorAll(".news-article");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+
+            filterButtons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            const category = button.getAttribute("data-category");
+            let visibleCount = 0;
+
+            articles.forEach(article => {
+                const articleCategory = article.getAttribute("data-category");
+
+                if (category === "all" || articleCategory === category) {
+                    article.style.display = "block";
+                    visibleCount++;
+                } else {
+                    article.style.display = "none";
+                }
+            });
+
+            // Show EMPTY message if nothing is visible
+            if (visibleCount === 0) {
+                emptyMessage.style.display = "block";
+            } else {
+                emptyMessage.style.display = "none";
+            }
+        });
+    });
+
+});
+</script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+/* Basic Setup and Colors */
+:root {
+    --dark-bg: #121212;
+    --text-light: #ffffff;
+    --text-muted: #aaaaaa;
+    --f1-red: #e60000;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.team-container {
+    max-width: 1682px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Page Title and Subtitle */
+.page-title {
+    font-size: 2.5em;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+/* --- Team Grid Layout --- */
+.teams-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+}
+
+.team-card {
+    position: relative;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 534px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Team-Specific Backgrounds (Gradients to match the visual depth) */
+.mclaren-bg {
+    
+    background: linear-gradient(145deg, #ff8c00, #c0392b); 
+}
+.mercedes-bg {
+   
+    background: linear-gradient(145deg, #008060, #004d40); 
+}
+.redbull-bg {
+   
+    background: linear-gradient(145deg, #0d1a3a, #1a3360); 
+}
+.ferrari-bg {
+   
+    background: linear-gradient(145deg, #cc0000, #800000); 
+}
+
+/* Card Header (Team Name and Icon) */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2; 
+}
+
+.team-name {
+    font-size: 2em;
+    font-weight: 900;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.team-icon {
+   
+    width: 30px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 50%;
+}
+
+/* Driver Tags */
+.drivers {
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+    margin-top: -150px; 
+}
+
+.driver-tag {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--text-light);
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+/* Car Image */
+.car-image {
+    position: absolute;
+    bottom: -30px; 
+    right: 0;
+    width: 100%; 
+    height: auto;
+    object-fit: contain;
+    transform: rotateY(180deg) scale(1.1); 
+    opacity: 0.9;
+    pointer-events: none; 
+    z-index: 1;
+}
+
+/* Adjustment for McLaren car to match the original image angle */
+.mclaren-car {
+    transform: none; 
+    width: 110%;
+    right: -20px;
+    bottom: -5px;
+}
+
+/* Adjustment for Mercedes car to match the original image angle */
+.mercedes-car {
+    transform: none; 
+    width: 110%;
+    right: -20px;
+    bottom: -5px;
+}
+
+
+/* ... (Keep all existing CSS styles for the team cards) ... */
+
+
+
+
+/* 4. Additional Team Backgrounds (for the new teams added) */
+.astonmartin-bg { background: linear-gradient(145deg, #005f5f, #003333); }
+.alpine-bg { background: linear-gradient(145deg, #003366, #001a4d); } 
+.williams-bg { background: linear-gradient(145deg, #0099cc, #006699); } 
+.haas-bg { background: linear-gradient(145deg, #a0a0a0, #707070); } 
+.rbf1-bg { background: linear-gradient(145deg, #004c99, #00264d); } 
+.sauber-bg { background: linear-gradient(145deg, #33cc33, #1a801a); } 
+
+
+
+/* Add this to your CSS file */
+.hidden-card {
+    display: none !important;
+}
+
+/* Optional: Style the button */
+.load-more-btn {
+    display: block;
+    width: 200px;
+    margin: 40px auto 20px;
+    padding: 12px 20px;
+    background-color: var(--f1-red);
+    color: var(--text-light);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.load-more-btn:hover {
+    background-color: #cc0000;
+}
+
+
+/* --- Styles for the icon container --- */
+.team-icon {
+    width: 40px; 
+    height: 40px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+.team-icon .logo-img {
+    max-width: 100%; 
+    max-height: 100%;
+    
+    object-fit: contain; 
+}
+.card-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 10px; 
+}
+
+.team-name {
+    margin: 0;
+}

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static '/g1app/css/auth.css' %}">
+
+    <style>
+.auth-bg {
+    background: url("{% static 'g1app/images/back_signIn_regstr.png' %}") center/cover no-repeat;
+}
+</style>
+</head>
+<body class="auth-bg">
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">Create Account</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" name="fullname" placeholder="Enter full name" required>
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Create password" required>
+            </div>
+
+            <button type="submit" class="auth-btn">Register</button>
+
+            <p class="switch-link">
+                Already have an account?
+                <a href="{% url 'Register_signIn' %}">Sign In</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="{% static '/g1app/css/auth.css' %}">
+
+    <style>
+.auth-bg {
+    background: url("{% static 'g1app/images/back_signIn_regstr.png' %}") center/cover no-repeat;
+}
+</style>
+</head>
+<body class="auth-bg">
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2 class="auth-title">Sign In</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="auth-btn">Sign In</button>
+
+            <p class="switch-link">
+                Don't have an account?
+                <a href="{% url 'Register_page' %}">Register</a>       
+                <a href="{% url 'forgot_password' %}" style="color:#41d37c;">Forgot Password?</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

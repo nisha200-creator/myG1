@@ -1,0 +1,192 @@
+/* Basic Reset and Variables */
+:root {
+    --dark-bg: #222222;
+    --card-bg: #2a2a2a;
+    --text-light: #ffffff;
+    --text-muted: #888888;
+    --f1-red: #e60000;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-light);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.news-container {
+    max-width: 1719px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* --- Filter Bar Styling --- */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--card-bg); /* Separator */
+    padding-bottom: 15px;
+}
+
+.category-filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.filter-btn.active {
+    background-color: var(--text-light);
+    color: var(--dark-bg);
+}
+
+.dropdown-btn {
+    background: none;
+    color: var(--text-light);
+    border: 1px solid var(--text-muted);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+.arrow-down::after {
+    content: '\25BC'; /* Down arrow character */
+    margin-left: 5px;
+    font-size: 0.7em;
+}
+
+/* --- News Grid Styling --- */
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for the news articles */
+    gap: 20px 30px;
+}
+
+.news-article {
+    display: flex;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none; /* Remove underline from links */
+    color: var(--text-light);
+    transition: background-color 0.2s;
+}
+
+.news-article:hover {
+    background-color: #383838; /* Slightly darker hover effect */
+}
+
+/* Article Image */
+.article-image-wrapper {
+    flex-shrink: 0; /* Prevents image area from shrinking */
+    width: 35%; /* Image takes up about 1/3rd of the card */
+    position: relative;
+}
+
+.article-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the area */
+    display: block;
+}
+
+/* Article Content (Text) */
+.article-content {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 65%;
+}
+
+.article-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.article-time {
+    color: var(--text-muted);
+    font-size: 0.85em;
+    margin-top: 10px;
+}
+
+/* Special Tag Styling (FACTS AND STATS) */
+.facts-and-stats-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--f1-red);
+    color: var(--text-light);
+    padding: 3px 8px;
+    font-size: 0.7em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom-right-radius: 5px;
+    z-index: 10;
+}
+
+/* Hidden Class for Filtering */
+.news-article.hidden {
+    display: none;
+}
+
+
+
+/* ... (Previous CSS code remains the same) ... */
+
+/* Hides articles that are meant to be loaded later */
+.news-article.initially-hidden {
+    display: none;
+}
+
+/* --- Load More Button Styling --- */
+.load-more-btn {
+    display: block;
+    width: 200px;
+    margin: 40px auto 20px;
+    padding: 12px 20px;
+    background-color: var(--f1-red);
+    color: var(--text-light);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.load-more-btn:hover {
+    background-color: #cc0000;
+}
+
+/* Class to hide the button when no more articles are left */
+.load-more-btn.hidden {
+    display: none;
+}

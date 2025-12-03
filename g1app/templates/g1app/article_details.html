@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest F1 News</title>
+    <link rel="stylesheet" href="{% static 'g1app/css/article_details.css' %}">
+    <link rel="stylesheet" href="{% static 'g1app/css/header_footer.css' %}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+   
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static '/g1app/images/logo.png' %}" alt="F1 Logo" class="logo-img">
+
+            </a>
+        </div>
+
+        <nav class="primary-nav">
+            <ul>
+                <!-- <li><a href="#">Race Series</a></li> -->
+                <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                <li><a href="#">Results</a></li>
+                <li><a href="{% url 'news' %}">News</a></li>
+
+                <li><a href="#">Drivers</a></li>
+                <li><a href="{% url 'teams' %}">Teams</a></li>
+                <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
+                <li><a href="#">G1 Members' Area</a></li>
+            </ul>
+        </nav>
+        <nav class="secondary-nav">
+            <ul>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="#">Hospitality</a></li>
+                <li><a href="#">Experiences</a></li>
+
+                {% if request.session.user_email %}
+
+                <!-- USER MENU -->
+                <li class="user-menu">
+                    <div class="user-info" id="userToggle">
+                        <img src="{% static 'g1app/images/logo.png' %}" class="user-avatar" alt="User">
+                        <span class="user-name">{{ request.session.user_name }}</span>
+
+                        <!-- ⬇ Arrow icon -->
+                        <span id="arrowBtn" class="arrow-icon">&#9662;</span>
+                    </div>
+
+                    <!-- DROPDOWN -->
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="{% url 'logout_user' %}">Logout</a></li>
+                    </ul>
+                </li>
+
+                {% else %}
+                <li><a href="{% url 'Register_signIn' %}">Sign In</a></li>
+                {% endif %}
+
+                <li><button class="subscribe-btn">Subscribe</button></li>
+            </ul>
+        </nav>
+
+
+    </header>
+
+    <div class="article-container">
+
+    <!-- TITLE -->
+    <h1 class="article-title">{{ article.title }}</h1>
+
+    <!-- SUBTITLE -->
+    <p class="article-subtitle">{{ article.subtitle }}</p>
+
+    <!-- TIME -->
+    <p class="article-time">{{ article.time_ago }}</p>
+
+    <!-- HERO IMAGE -->
+    <div class="article-hero-image">
+        <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="article-content">
+        {{ article.content|linebreaks }}
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+</html>

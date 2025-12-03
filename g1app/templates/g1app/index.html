@@ -1,0 +1,652 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 Inspired Homepage</title>
+    <link rel="stylesheet" href="{% static 'g1app/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'g1app/css/header_footer.css' %}">
+    <link rel="stylesheet" href="{% static '/g1app/css/auth.css' %}">
+
+    <style>
+        /* USER MENU */
+        .user-menu {
+            position: relative;
+            list-style: none;
+        }
+
+        /* USER INFO (NAME + IMAGE + ARROW) */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff70;
+        }
+
+        .user-name {
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .arrow-icon {
+            color: #fff;
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        /* ROTATE ARROW WHEN ACTIVE */
+        .arrow-rotate {
+            transform: rotate(180deg);
+        }
+
+        /* DROPDOWN */
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 160px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none !important;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .dropdown-show {
+            display: block !important;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* EACH LINE */
+        .dropdown-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: red;
+            color: #fff;
+        }
+
+        /* COOKIES STYLE */
+
+
+        /* HIDE CLASS */
+        .hidden {
+            display: none !important;
+        }
+
+        /* FULL-WIDTH BOTTOM COOKIE BAR */
+        .cookie-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #000;
+            color: #fff;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999999;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        /* LEFT CONTENT */
+        .cookie-left {
+            max-width: 60%;
+        }
+
+        .cookie-left h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cookie-left p {
+            font-size: 14px;
+            color: #ccc;
+            margin: 0;
+        }
+
+        /* RIGHT BUTTONS */
+        .cookie-right {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 260px;
+        }
+
+        /* SETTINGS BUTTON */
+        .cookie-settings {
+            background: transparent;
+            border: none;
+            color: #bbb;
+            text-align: right;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .cookie-settings:hover {
+            color: #fff;
+        }
+
+        /* ACCEPT ALL BUTTON — RED */
+        .cookie-accept-red {
+            background: #e10600;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .cookie-accept-red:hover {
+            background: #b30500;
+        }
+
+
+        /* article time */
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static '/g1app/images/logo.png' %}" alt="F1 Logo" class="logo-img">
+
+            </a>
+        </div>
+
+        <nav class="primary-nav">
+            <ul>
+                <!-- <li><a href="#">Race Series</a></li> -->
+                <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                <li><a href="#">Results</a></li>
+                <li><a href="{% url 'news' %}">News</a></li>
+
+                <li><a href="#">Drivers</a></li>
+                <li><a href="{% url 'teams' %}">Teams</a></li>
+                <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
+                <li><a href="#">G1 Members' Area</a></li>
+            </ul>
+        </nav>
+        <nav class="secondary-nav">
+            <ul>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="#">Hospitality</a></li>
+                <li><a href="#">Experiences</a></li>
+
+                {% if request.session.user_email %}
+
+                <!-- USER MENU -->
+                <li class="user-menu">
+                    <div class="user-info" id="userToggle">
+                        <img src="{% static 'g1app/images/logo.png' %}" class="user-avatar" alt="User">
+                        <span class="user-name">{{ request.session.user_name }}</span>
+
+                        <!-- ⬇ Arrow icon -->
+                        <span id="arrowBtn" class="arrow-icon">&#9662;</span>
+                    </div>
+
+                    <!-- DROPDOWN -->
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="{% url 'logout_user' %}">Logout</a></li>
+                    </ul>
+                </li>
+
+                {% else %}
+                <li><a href="{% url 'Register_signIn' %}">Sign In</a></li>
+                {% endif %}
+
+                <li><button class="subscribe-btn">Subscribe</button></li>
+            </ul>
+        </nav>
+
+
+    </header>
+    <!-- countdown-bar -->
+
+    <main class="hero-section">
+
+    {% if featured %}
+    <div class="hero-main">
+        <img src="{{ featured.thumbnail.url }}" alt="{{ featured.title }}" class="hero-image">
+        <div class="image-overlay">
+            <span class="category-tag">{{ featured.category }}</span>
+            <h2>
+                <a href="{% url 'article_detail' featured.id %}">
+                    {{ featured.title }}
+                </a>
+            </h2>
+        </div>
+    </div>
+    {% endif %}
+
+    <aside class="hero-sidebar">
+
+        {% for article in sidebar_articles %}
+        <article class="sidebar-item">
+            <div class="item-thumbnail">
+                <a href="{% url 'article_detail' article.id %}">
+                    <img src="{{ article.thumbnail.url }}" class="thumb-image" alt="{{ article.title }}">
+                </a>
+            </div>
+
+            <p>
+                <a href="{% url 'article_detail' article.id %}">
+                    {{ article.title }}
+                </a>
+            </p>
+
+            <span class="article-time">{{ article.time_ago }}</span>
+        </article>
+        {% endfor %}
+
+    </aside>
+
+</main>
+
+
+
+    <!-- FEATURED VIDEO -->
+
+
+    <section class="featured-video-section">
+        <div class="header-controls">
+            <h2 class="section-title">FEATURED VIDEO</h2>
+            <div class="controls">
+                <a href="#" class="view-all">View all</a>
+                <button class="scroll-btn left-arrow" id="videoScrollLeftBtn">&lt;</button>
+                <button class="scroll-btn right-arrow" id="videoScrollRightBtn">&gt;</button>
+            </div>
+        </div>
+
+        <div class="video-carousel" id="videoCarousel">
+
+            <article class="video-card">
+                <div class="video-container">
+                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
+                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
+                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
+
+                    <!-- <span class="duration">1:27</span> -->
+                    <button class="play-icon" aria-label="Play video"></button>
+                </div>
+                <p class="video-title">2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole
+                </p>
+            </article>
+
+            <article class="video-card">
+                <div class="video-container">
+                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
+                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
+                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
+                    <!-- <span class="duration">16:24</span> -->
+                    <button class="play-icon" aria-label="Play video"></button>
+                </div>
+                <p class="video-title">TECH TALK – How to fix Mercedes’ difficult car</p>
+            </article>
+
+            <article class="video-card">
+                <div class="video-container">
+                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
+                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
+                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
+                    <!-- <span class="duration">1:23</span> -->
+                    <button class="play-icon" aria-label="Play video"></button>
+                </div>
+                <p class="video-title">GHOST CAR: See how Piastri beat Russell to Sprint pole in Qatar</p>
+            </article>
+
+            <article class="video-card">
+                <div class="video-container">
+                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
+                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
+                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
+                    <!-- <span class="duration">0:19</span> -->
+                    <button class="play-icon" aria-label="Play video"></button>
+                </div>
+                <p class="video-title">2025 Qatar GP Sprint Qualifying: Piastri crosses the line to seal pole for the
+                    Sprint</p>
+            </article>
+
+            <article class="video-card">
+                <div class="video-container">
+                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
+                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
+                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
+                    <!-- <span class="duration">6:46</span> -->
+                    <button class="play-icon" aria-label="Play video"></button>
+                </div>
+                <p class="video-title">Sprint Qualifying Highlights: 2025 Qatar Grand Prix</p>
+            </article>
+
+        </div>
+    </section>
+
+
+
+    <!-- EDITOR'S PICKS -->
+    <section class="editors-picks-section">
+        <div class="header-controls">
+            <h2 class="section-title">EDITOR'S PICKS</h2>
+        </div>
+
+        <div class="editors-picks-grid" id="editorPicksCarousel">
+
+            <article class="editor-pick-card main-card">
+                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Norris" class="card-image">
+                <div class="card-content">
+                    <h3>Norris laments McLaren's Qatar strategy as title goes to Abu Dhabi</h3>
+                </div>
+            </article>
+
+            <article class="editor-pick-card">
+                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Verstappen" class="card-image-small">
+                <div class="card-content">
+                    <p>Verstappen believes 'it's all possible now' after Qatar triumph</p>
+                </div>
+            </article>
+
+            <article class="editor-pick-card">
+                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Sainz" class="card-image-small">
+                <div class="card-content">
+                    <p>Sainz 'over the moon' with podium in Qatar</p>
+                </div>
+            </article>
+
+            <article class="editor-pick-card main-card">
+                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Race Start" class="card-image">
+                <div class="card-content">
+                    <h3>What the teams said – Race day in Qatar</h3>
+                </div>
+            </article>
+
+            <article class="editor-pick-card">
+                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Newey" class="card-image-small">
+                <div class="card-content">
+                    <p>Newey 'determined not to dilute focus with Team Principal role</p>
+                </div>
+            </article>
+
+            <article class="editor-pick-card">
+                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Formaroli" class="card-image-small">
+                <div class="card-content">
+                    <p>Formaroli seals title with a round to spare</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- drivers and Team -->
+
+
+    <header>
+        <div class="red-bar"></div>
+    </header>
+
+    <div class="container">
+        <h1>2025 SEASON</h1>
+
+        <nav class="standings-toggle">
+            <button class="toggle-btn active" data-target="drivers-standings">DRIVERS</button>
+            <button class="toggle-btn" data-target="teams-standings">TEAMS</button>
+        </nav>
+
+        <section id="drivers-standings" class="standings-section active">
+            <div class="standings-grid">
+
+                <div class="standings-card blue-bg">
+                    <span class="position">2<sup>ND</sup></span>
+                    <div class="info">
+                        <p class="name">Max Verstappen</p>
+                        <p class="team">Red Bull Racing</p>
+                    </div>
+                    <img src="{% static '/g1app/images/Kimi_Antonelli.webp' %}" alt="Max Verstappen" class="driver-img">
+                    <p class="points">396 <span class="pts">PTS</span></p>
+                </div>
+
+                <div class="standings-card orange-bg first-place">
+                    <span class="position">1<sup>ST</sup></span>
+                    <div class="info">
+                        <p class="name">Lando Norris</p>
+                        <p class="team">McLaren</p>
+                    </div>
+                    <img src="{% static '/g1app/images/Kimi_Antonelli.webp' %}" alt="Max Verstappen" class="driver-img">
+                    <p class="points">488 <span class="pts">PTS</span></p>
+                </div>
+
+                <div class="standings-card orange-bg">
+                    <span class="position">3<sup>RD</sup></span>
+                    <div class="info">
+                        <p class="name">Oscar Piastri</p>
+                        <p class="team">McLaren</p>
+                    </div>
+                    <img src="{% static '/g1app/images/Kimi_Antonelli.webp' %}" alt="Max Verstappen" class="driver-img">
+                    <p class="points">392 <span class="pts">PTS</span></p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="teams-standings" class="standings-section hidden">
+            <div class="standings-grid">
+
+                <div class="standings-card green-bg">
+                    <span class="position">2<sup>ND</sup></span>
+                    <div class="info">
+                        <p class="name">Mercedes</p>
+                        <p class="points-team">459 <span class="pts">PTS</span></p>
+                        <p class="drivers">George Russell</p>
+                        <p class="drivers">Kimi Antonelli</p>
+                    </div>
+                    <img src="{% static '/g1app/images/gokart.png' %}" alt="Mercedes Car" class="car-img">
+                </div>
+
+                <div class="standings-card orange-bg first-place">
+                    <span class="position">1<sup>ST</sup></span>
+                    <div class="info">
+                        <p class="name">McLaren</p>
+                        <p class="points-team">880 <span class="pts">PTS</span></p>
+                        <p class="drivers">Oscar Piastri</p>
+                        <p class="drivers">Lando Norris</p>
+                    </div>
+                    <img src="{% static '/g1app/images/gokart.png' %}" alt="McLaren Car" class="car-img">
+                </div>
+
+                <div class="standings-card blue-bg">
+                    <span class="position">3<sup>RD</sup></span>
+                    <div class="info">
+                        <p class="name">Red Bull Racing</p>
+                        <p class="points-team">424 <span class="pts">PTS</span></p>
+                        <p class="drivers">Max Verstappen</p>
+                        <p class="drivers">Yuki Tsunoda</p>
+                    </div>
+                    <img src="{% static '/g1app/images/gokart.png' %}" alt="Red Bull Car" class="car-img">
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COOKIE CONSENT POPUP -->
+        <!-- COOKIE BOTTOM BAR -->
+        <div id="cookiePopup" class="cookie-bar hidden">
+
+            <div class="cookie-left">
+                <h3>We value your privacy</h3>
+                <p>
+                    We use technologies such as cookies in order to integrate with social media,
+                    serve relevant advertising, analyse our traffic and improve your experience.
+                    To accept cookies, click “I Accept” or manage your settings.
+                </p>
+            </div>
+
+            <div class="cookie-right">
+                <!-- <button id="manageCookies" class="cookie-settings">› Cookies Settings</button> -->
+                <button id="acceptCookies" class="cookie-accept-red">Accept All Cookies</button>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- footer -->
+
+        <footer class="f1-footer">
+            <div class="footer-row footer-app-banner">
+                <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
+                <div class="app-stores">
+                    <a href="#" class="store-link">
+                        <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
+                            class="store-badge">
+                    </a>
+                    <a href="#" class="store-link">
+                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                            class="store-badge">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-row footer-main-nav">
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="#">Schedule</a></li>
+                        <li><a href="#">Drivers</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Teams</a></li>
+                        <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
+                        <li><a href="#">Cookie Preferences</a></li>
+                        <!-- <li class="more-link"><a href="#">More <span class="dropdown-arrow"></span></a></li> -->
+                    </ul>
+                </nav>
+                <div class="f1-red-line">
+                    <span class="f1-logo-mini">G1</span>
+                </div>
+            </div>
+
+            <div class="footer-row footer-bottom-bar">
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+
+                <button class="display-mode-selector">
+                    Display mode
+                    <span class="dropdown-arrow-icon"></span>
+                </button>
+
+                <p class="copyright">
+                    © 2003-2025 G1 World Championship Limited
+                </p>
+            </div>
+        </footer>
+        <script src="{% static 'g1app/js/index.js' %}" defer></script>
+
+        <!-- js FOR PROFILE DROPDOWN -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const toggleBtn = document.getElementById("userToggle");
+                const dropdown = document.getElementById("dropdownMenu");
+                const arrow = document.querySelector(".arrow-icon");
+
+                toggleBtn.addEventListener("click", function (e) {
+                    e.stopPropagation();
+
+                    dropdown.classList.toggle("dropdown-show");
+                    arrow.classList.toggle("arrow-rotate");
+                });
+
+                document.addEventListener("click", function () {
+                    dropdown.classList.remove("dropdown-show");
+                    arrow.classList.remove("arrow-rotate");
+                });
+
+            });
+
+        </script>
+
+        <!-- cookies js -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const cookiePopup = document.getElementById("cookiePopup");
+
+                // SHOW ONLY FIRST TIME
+                if (localStorage.getItem("cookieConsent") === "true") {
+                    cookiePopup.classList.add("hidden");
+                } else {
+                    cookiePopup.classList.remove("hidden");
+                }
+
+                // ACCEPT ALL BUTTON
+                document.getElementById("acceptCookies").addEventListener("click", function () {
+                    localStorage.setItem("cookieConsent", "true");
+                    cookiePopup.classList.add("hidden");
+                });
+
+                // SETTINGS BUTTON
+                document.getElementById("manageCookies").addEventListener("click", function () {
+                    alert("Cookie settings panel coming soon!");
+                    // Later we can open a real manage panel here
+                });
+
+            });
+        </script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
