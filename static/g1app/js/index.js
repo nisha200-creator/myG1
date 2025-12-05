@@ -294,3 +294,60 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run the initialization function when the page loads
     initializeCards();
 });
+
+
+
+
+// footer dropdown js
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const toggleBtn = document.getElementById("userToggle");
+            const dropdown = document.getElementById("dropdownMenu");
+            const arrow = document.querySelector(".arrow-icon");
+
+            toggleBtn.addEventListener("click", function (e) {
+                e.stopPropagation();
+
+                dropdown.classList.toggle("dropdown-show");
+                arrow.classList.toggle("arrow-rotate");
+            });
+
+            document.addEventListener("click", function () {
+                dropdown.classList.remove("dropdown-show");
+                arrow.classList.remove("arrow-rotate");
+            });
+
+        });
+
+   
+
+    // <!-- cookies js -->
+    
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const cookiePopup = document.getElementById("cookiePopup");
+
+            // SHOW ONLY FIRST TIME
+            if (localStorage.getItem("cookieConsent") === "true") {
+                cookiePopup.classList.add("hidden");
+            } else {
+                cookiePopup.classList.remove("hidden");
+            }
+
+            // ACCEPT ALL BUTTON
+            document.getElementById("acceptCookies").addEventListener("click", function () {
+                localStorage.setItem("cookieConsent", "true");
+                cookiePopup.classList.add("hidden");
+            });
+
+            // SETTINGS BUTTON
+            document.getElementById("manageCookies").addEventListener("click", function () {
+                alert("Cookie settings panel coming soon!");
+                // Later we can open a real manage panel here
+            });
+
+        });
+    

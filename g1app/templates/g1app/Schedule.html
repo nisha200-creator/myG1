@@ -13,8 +13,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-
-   .user-menu {
+         /* USER MENU */
+        .user-menu {
             position: relative;
             list-style: none;
         }
@@ -53,7 +53,9 @@
             transform: rotate(180deg);
         }
 
-        /* DROPDOWN */
+
+
+         /* DROPDOWN */
         .dropdown-menu {
             position: absolute;
             top: 40px;
@@ -99,6 +101,10 @@
             background: red;
             color: #fff;
         }
+        
+
+        
+    
     </style>
 </head>
 
@@ -109,7 +115,7 @@
     <header class="main-header">
         <div class="logo">
             <a href="{% url 'index' %}">
-                <img src="{% static '/g1app/images/logo.png' %}" alt="F1 Logo" class="logo-img">
+                <img src="{% static '/g1app/images/logo.png' %} " alt="F1 Logo" class="logo-img">
 
             </a>
         </div>
@@ -118,18 +124,16 @@
             <ul>
                 <!-- <li><a href="#">Race Series</a></li> -->
                 <li><a href="{% url 'schedule' %}">Schedule</a></li>
-                <li><a href="#">Results</a></li>
+                <li><a href="{% url 'race_results' %}">Results</a></li>
                 <li><a href="{% url 'news' %}">News</a></li>
-
                 <li><a href="#">Drivers</a></li>
                 <li><a href="{% url 'teams' %}">Teams</a></li>
-                <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
-                <li><a href="#">G1 Members' Area</a></li>
+                <!-- <li><a href="#">G1 Members' Area</a></li> -->
             </ul>
         </nav>
         <nav class="secondary-nav">
             <ul>
-                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'about' %}">G1 Members' Area</a></li>
                 <li><a href="#">Hospitality</a></li>
                 <li><a href="#">Experiences</a></li>
 
@@ -167,143 +171,122 @@
     <body>
 
         <div class="schedule-hero">
-            <img src="{% static 'g1app/images/g1_about.avif' %}" alt="Schedule Hero" class="schedule-hero-img">
+            <img src="{{ races.first.image.url }}" alt="Schedule Hero" class="schedule-hero-img">
 
             <div class="schedule-hero-overlay">
-                <h1 class="hero-title">2025 FIA FORMULA ONE™ WORLD SCHEDULE</h1>
+                <h1 class="hero-title">2025 FIA FORMULA G1N WORLD SCHEDULE</h1>
             </div>
         </div>
 
         <div class="schedule-container">
-    <h1 class="schedule-title">2025 FIA FORMULA ONE™ SCHEDULE</h1>
+            <h1 class="schedule-title">2025 FIA G1N™ SCHEDULE</h1>
 
-    <div class="schedule-section">
-        <h2 class="section-title">All Races</h2>
+            <div class="schedule-section">
+                <h2 class="section-title">All Races</h2>
 
-        <div class="race-grid">
+                <div class="race-grid">
 
-            <!-- RACE CARD 1 -->
-            <div class="race-card load-item">
-                <img src="{% static 'g1app/images/hamburg.jpg' %}" class="race-img">
-                <div class="race-info">
-                    <span class="race-round">ROUND 1</span>
-                    <h3 class="race-name">Delhi</h3>
-                    <p class="race-date">14 – 16 MAR 2026</p>
+                    {% for race in races %}
+                    <div class="race-card load-item">
+                        <img src="{{ race.image.url }}" class="race-img">
+                        <div class="race-info">
+                            <span class="race-round">ROUND {{ race.round_number }}</span>
+                            <h3 class="race-name">{{ race.name }}</h3>
+                            <p class="race-date">{{ race.date_range }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
 
-            <!-- RACE CARD 2 -->
-            <div class="race-card load-item">
-                <img src="{% static 'g1app/images/hamburg.jpg' %}" class="race-img">
-                <div class="race-info">
-                    <span class="race-round">ROUND 2</span>
-                    <h3 class="race-name">Mumbai</h3>
-                    <p class="race-date">21 – 23 MAR 2026</p>
-                </div>
-            </div>
-
-            <!-- RACE CARD 3 -->
-            <div class="race-card load-item">
-                <img src="{% static 'g1app/images/hamburg.jpg' %}" class="race-img">
-                <div class="race-info">
-                    <span class="race-round">ROUND 3</span>
-                    <h3 class="race-name">Hyderabad</h3>
-                    <p class="race-date">04 – 06 APR 2026</p>
-                </div>
-            </div>
-
-            <!-- RACE CARD 4 -->
-            <div class="race-card load-item">
-                <img src="{% static 'g1app/images/hamburg.jpg' %}" class="race-img">
-                <div class="race-info">
-                    <span class="race-round">ROUND 4</span>
-                    <h3 class="race-name">Bangalore</h3>
-                    <p class="race-date">04 – 06 APR 2026</p>
-                </div>
-            </div>
-
-            <!-- RACE CARD 5 -->
-            <div class="race-card load-item">
-                <img src="{% static 'g1app/images/hamburg.jpg' %}" class="race-img">
-                <div class="race-info">
-                    <span class="race-round">ROUND 5</span>
-                    <h3 class="race-name">Bangalore</h3>
-                    <p class="race-date">04 – 06 APR 2026</p>
-                </div>
-            </div>
-
-            <!-- RACE CARD 6 -->
-            <div class="race-card load-item">
-                <img src="{% static 'g1app/images/hamburg.jpg' %}" class="race-img">
-                <div class="race-info">
-                    <span class="race-round">ROUND 6</span>
-                    <h3 class="race-name">Bangalore</h3>
-                    <p class="race-date">04 – 06 APR 2026</p>
-                </div>
-            </div>
-
-            <!-- Add more race cards here -->
+            <button id="loadMoreBtn" class="load-more-btn">LOAD MORE</button>
         </div>
-    </div>
-
-    <button id="loadMoreBtn" class="load-more-btn">LOAD MORE</button>
-</div>
 
 
 
+        
 
 
 
-
-
-        <footer class="f1-footer">
-            <div class="footer-row footer-app-banner">
-                <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
-                <div class="app-stores">
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store" class="store-badge">
-                    </a>
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play" class="store-badge">
-                    </a>
-                </div>
+         <footer class="f1-footer">
+        <div class="footer-row footer-app-banner">
+            <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
+            <div class="app-stores">
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
             </div>
+        </div>
 
-            <div class="footer-row footer-main-nav">
-                <nav class="footer-nav">
-                    <ul>
-                        <li><a href="#">Schedule</a></li>
-                        <li><a href="#">Drivers</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Teams</a></li>
-                        <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
-                        <li><a href="#">Cookie Preferences</a></li>
-                        <!-- <li class="more-link"><a href="#">More <span class="dropdown-arrow"></span></a></li> -->
-                    </ul>
-                </nav>
-                <div class="f1-red-line">
-                    <span class="f1-logo-mini">G1</span>
-                </div>
+        <div class="footer-row footer-main-nav">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                    <li><a href="{% url 'race_results' %}">Results</a></li>
+                    <li><a href="{% url 'news' %}">News</a></li>
+                    <li><a href="#">Drivers</a></li>
+                    <li><a href="{% url 'teams' %}">Teams</a></li>
+                    <li><a href="#">Cookie Preferences</a></li>
+                </ul>
+            </nav>
+            <div class="f1-red-line">
+                <span class="f1-logo-mini">G1</span>
             </div>
+        </div>
 
-            <div class="footer-row footer-bottom-bar">
-                <div class="social-links">
+        <div class="footer-row footer-bottom-bar">
+            <!-- <div class="social-links">
                     <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
                     <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
+                </div> -->
 
-                <button class="display-mode-selector">
-                    Display mode
-                    <span class="dropdown-arrow-icon"></span>
-                </button>
 
-                <p class="copyright">
-                    © 2003-2025 G1 World Championship Limited
-                </p>
+
+            <button class="display-mode-selector">
+                Display mode
+                <span class="dropdown-arrow-icon"></span>
+            </button>
+
+            <div class="display-mode-menu hidden">
+                <div class="mode-option" data-mode="system">System</div>
+                <div class="mode-option" data-mode="light">Light mode</div>
+                <div class="mode-option" data-mode="dark">Dark mode</div>
             </div>
-        </footer>
+
+
+
+
+            <p class="copyright">
+                © 2003-2025 G1 World Championship Limited
+            </p>
+        </div>
+    </footer>
+
+
+
+
+
+
+       
+    
+    
+    <!-- load more JS -->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
 
@@ -337,6 +320,10 @@
 
             });
         </script>
+
+        
+
+         
 
 
     </body>

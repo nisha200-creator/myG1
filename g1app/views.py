@@ -5,18 +5,29 @@ from django.utils.crypto import get_random_string
 from django.utils import timezone
 from datetime import timedelta
 
-from .models import UserTable, PasswordResetToken, Article
+from .models import UserTable, PasswordResetToken, Article, Video, Race, RaceResult
 
 
 # ------------------ INDEX PAGE (Articles) ------------------
 
+# def index(request):
+#     featured = Article.objects.filter(is_featured=True).first()
+#     sidebar_articles = Article.objects.filter(is_featured=False).order_by('-created_at')[:5]
+
+#     return render(request, 'g1app/index.html', {
+#         'featured': featured,
+#         'sidebar_articles': sidebar_articles,
+#     })
+
 def index(request):
     featured = Article.objects.filter(is_featured=True).first()
     sidebar_articles = Article.objects.filter(is_featured=False).order_by('-created_at')[:5]
+    videos = Video.objects.all().order_by('-created_at')[:10]
 
     return render(request, 'g1app/index.html', {
         'featured': featured,
         'sidebar_articles': sidebar_articles,
+        'videos': videos,
     })
 
 
@@ -33,8 +44,13 @@ def teams(request):
 def about(request):
     return render(request, 'g1app/about.html')
 
+
+# view for shedule page import race model
+
 def schedule(request):
-    return render(request, 'g1app/schedule.html')
+    races = Race.objects.all().order_by('-round_number')
+
+    return render(request, 'g1app/schedule.html', {'races': races})
 
 
 # ------------------ SIGNIN / REGISTER ------------------
@@ -145,4 +161,25 @@ def article_detail(request, id):
 
     return render(request, 'g1app/article_details.html', {
         'article': article
+    })
+
+
+
+# race result page
+
+
+
+def race_results(request):
+    results = RaceResult.objects.all()
+    return render(request, "g1app/Result.html", {"results": results})
+
+
+# video details view
+def video_detail(request, id):
+    video = get_object_or_404(Video, id=id)
+    videos = Video.objects.all().order_by('-created_at')[:10]   # same as index page
+
+    return render(request, "g1app/video_detail.html", {
+        "video": video,
+        "videos": videos,
     })

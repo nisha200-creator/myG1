@@ -75,26 +75,103 @@
 
     <div class="article-container">
 
-    <!-- TITLE -->
     <h1 class="article-title">{{ article.title }}</h1>
 
-    <!-- SUBTITLE -->
     <p class="article-subtitle">{{ article.subtitle }}</p>
 
-    <!-- TIME -->
     <p class="article-time">{{ article.time_ago }}</p>
 
-    <!-- HERO IMAGE -->
     <div class="article-hero-image">
         <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
     </div>
+    <div class="article-content">
+        {{ article.content|linebreaks }}
+    </div>
 
-    <!-- CONTENT -->
+    {% if article.video %}
+    <div class="article-video">
+        <video controls width="100%">
+            <source src="{{ article.video.url }}" type="video/mp4">
+        </video>
+    </div>
+    {% endif %}
+
     <div class="article-content">
         {{ article.content|linebreaks }}
     </div>
 
 </div>
+
+
+  <footer class="f1-footer">
+        <div class="footer-row footer-app-banner">
+            <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
+            <div class="app-stores">
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-row footer-main-nav">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                    <li><a href="{% url 'race_results' %}">Results</a></li>
+                    <li><a href="{% url 'news' %}">News</a></li>
+                    <li><a href="#">Drivers</a></li>
+                    <li><a href="{% url 'teams' %}">Teams</a></li>
+                    <li><a href="#">Cookie Preferences</a></li>
+                </ul>
+            </nav>
+            <div class="f1-red-line">
+                <span class="f1-logo-mini">G1</span>
+            </div>
+        </div>
+
+        <div class="footer-row footer-bottom-bar">
+            <!-- <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div> -->
+
+
+
+            <button class="display-mode-selector">
+                Display mode
+                <span class="dropdown-arrow-icon"></span>
+            </button>
+
+            <div class="display-mode-menu hidden">
+                <div class="mode-option" data-mode="system">System</div>
+                <div class="mode-option" data-mode="light">Light mode</div>
+                <div class="mode-option" data-mode="dark">Dark mode</div>
+            </div>
+
+
+
+
+            <p class="copyright">
+                © 2003-2025 G1 World Championship Limited
+            </p>
+        </div>
+    </footer>
+    <script src="{% static 'g1app/js/index.js' %}" defer></script>
 
 
 

@@ -116,17 +116,18 @@ ul {
 /* footer */
 
 
-/* FONT AWESOME NOTE: You need to link Font Awesome in your HTML <head> for social icons (e.g., <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">) */
 
 .f1-footer {
-    background-color: var(--f1-dark-bg); /* Inherit dark background */
+    background-color: var(--f1-dark-bg); 
     padding: 20px 0;
     font-size: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%!important;
 }
 
 .footer-row {
-    max-width: 1400px;
+    max-width: 100% !important;   
+    width: 100%;   
     margin: 0 auto;
     padding: 10px 20px;
     display: flex;
@@ -134,14 +135,13 @@ ul {
     justify-content: space-between;
 }
 
-/* Row 1: App Download Banner */
 .footer-app-banner {
     padding-bottom: 25px;
 }
 
 .app-title {
     font-size: 30px;
-    font-weight: 900; /* Extra bold */
+    font-weight: 900; 
     letter-spacing: 1px;
     margin: 0;
 }
@@ -152,13 +152,12 @@ ul {
 }
 
 .store-badge {
-    height: 35px; /* Adjust size of app badge images */
+    height: 35px; 
     width: auto;
 }
 
-/* Row 2: Main Footer Navigation and Red Line */
 .footer-main-nav {
-    display: block; /* Change to block to handle the red line */
+    display: block; 
     padding-bottom: 25px;
 }
 
@@ -174,7 +173,6 @@ ul {
     align-items: center;
 }
 
-/* Simple placeholder for the dropdown arrow next to 'More' */
 .dropdown-arrow {
     width: 0;
     height: 0;
@@ -188,25 +186,30 @@ ul {
 .f1-red-line {
     position: relative;
     height: 10px;
-    background-color: var(--f1-red);
     border-radius: 5px;
+    background: linear-gradient(
+        to right,
+        #FF9933,
+        #FFFFFF,
+        #138808)
 }
+
 
 .f1-logo-mini {
     position: absolute;
-    top: -5px; /* Adjust to sit on the red line */
+    top: -5px; 
     left: 0;
     font-size: 18px;
     font-weight: bold;
     color: var(--f1-text-color);
     background-color: var(--f1-dark-bg);
-    padding-right: 8px; /* Padding to cut the red line */
+    padding-right: 8px;
     z-index: 10;
 }
 
 /* Row 3: Bottom Bar */
 .footer-bottom-bar {
-    justify-content: flex-start; /* Align all items to the left initially */
+    justify-content: center; 
     gap: 30px;
 }
 
@@ -214,7 +217,7 @@ ul {
     display: flex;
     gap: 20px;
     font-size: 18px;
-    margin-right: auto; /* Pushes the next element to the right */
+    margin-right: auto;
 }
 
 .social-links a {
@@ -243,7 +246,6 @@ ul {
     border-color: var(--f1-red);
 }
 
-/* Simple placeholder for the dropdown arrow inside the button */
 .dropdown-arrow-icon {
     width: 0;
     height: 0;

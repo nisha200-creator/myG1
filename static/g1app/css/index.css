@@ -1,43 +1,90 @@
+ /* display mode change */
 
+        .display-mode-selector {
+            background: none;
+            border: 2px solid #fff;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            color: #fff;
+        }
 
-/* 2. Top Countdown Bar Styling */
-.countdown-bar {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--f1-countdown-bg);
-    color: var(--f1-light-grey);
-    font-size: 14px;
-    gap: 40px;
+        .display-mode-menu {
+            position: absolute;
+            background: #12121a;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #444;
+        }
+
+        .display-mode-menu.hidden {
+            display: none;
+        }
+
+        .mode-option {
+            padding: 6px 0;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .mode-option.active::after {
+            content: "•";
+            margin-left: 8px;
+            color: #e10600;
+        }
+
+        /* =============== LIGHT MODE COLORS =============== */
+html.light-mode {
+    background: #ffffff !important;
+    color: #000 !important;
 }
 
-.race-info .location {
-    font-weight: bold;
-    color: var(--f1-text-color);
-    margin-right: 5px;
+/* section title → black */
+html.light-mode .section-title {
+    color: #000 !important;
 }
 
-.countdown-timer {
-    font-size: 18px;
-    font-weight: bold;
-    color: var(--f1-red);
+/* card-content h3 → white */
+html.light-mode .card-content h3 {
+    color: #ffffff !important;
 }
 
-.live-timing {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 12px;
+/* toggle-btn .active → black */
+html.light-mode .toggle-btn.active {
+    color: gray !important;
 }
 
-.live-timing .tag {
-    background-color: white;
-    color: black;
-    padding: 2px 5px;
-    font-weight: bold;
+/* position → white */
+html.light-mode .position {
+    color: #ffffff !important;
 }
 
+/* name → white */
+html.light-mode .name {
+    color: #ffffff !important;
+}
+
+/* points → white */
+html.light-mode .points {
+    color: #ffffff !important;
+}
+
+/* app-title → white */
+html.light-mode .app-title {
+    color: #ffffff !important;
+}
+html.light-mode  p {
+    color: #ffffff !important;
+}
+html.light-mode .scroll-btn {
+    color : black !important
+}
+html.light-mode .view-all  {
+    color : black !important
+}
+        
+
+        
 /* 3. Main Content/Hero Section Styling */
 .hero-section {
     display: grid;
@@ -136,7 +183,9 @@
     cursor: pointer;
     transition: background-color 0.2s;
 }
-
+.sidebar-item p {
+    width: 300px;
+}
 
 /* HIGHLIGHTS Tag (Reused & Correct) */
 .highlight-tag {
@@ -432,13 +481,25 @@
 /* drivers and team */
 
 
-.red-bar {
+/* .red-bar {
     height: 10px;
-    background-color: #e60000; /* F1-style red */
+    background-color: #e60000; 
+} */
+ .india-flag-bar {
+    height: 10px;
+background: linear-gradient(
+    to right,
+    #FF9933 0%,
+    #FFD1A3 20%,
+    #FFFFFF 50%,
+    #A8E6C3 80%,
+    #138808 100%
+);
 }
 
+
 .container {
-    max-width: 1200px;
+    max-width: 1380px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -449,6 +510,34 @@ h1 {
     margin-top: 0;
     margin-bottom: 30px;
     letter-spacing: 5px;
+    /* Animation for the title */
+    animation: slide-in-right 0.8s ease-out;
+}
+
+/* --- Keyframes for Modern Animation --- */
+
+/* Slide title in from the left/right */
+@keyframes slide-in-right {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Card fade and slide up on section load */
+@keyframes fade-in-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 /* --- Toggle Navigation Styling --- */
@@ -470,7 +559,7 @@ h1 {
     padding: 5px 0;
     cursor: pointer;
     position: relative;
-    transition: color 0.3s;
+    transition: color 0.3s ease-in-out; /* Smooth color change */
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -483,44 +572,80 @@ h1 {
     color: white;
 }
 
-.toggle-btn.active::after {
+.toggle-btn::after {
     content: '';
     position: absolute;
-    bottom: -7px; /* Adjust based on border-bottom thickness */
+    bottom: -7px; 
     left: 0;
-    width: 100%;
+    width: 0; /* Starts at 0 width */
     height: 2px;
     background-color: #e60000; /* Active indicator color */
+    transition: width 0.3s ease-out; /* Smooth width transition for the slide effect */
+}
+
+.toggle-btn.active::after {
+    width: 100%; /* Expands to full width when active */
 }
 
 /* --- Standings Grid Styling --- */
 .standings-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 20px;
 }
 
+/* Smooth transition for showing/hiding the section content */
+.standings-section {
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
+    /* Set a reasonable max-height for smooth transition */
+    max-height: 1000px; 
+    overflow: hidden; /* Hide overflowing content during transition */
+}
+
 .standings-section.hidden {
-    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    max-height: 0; /* Collapse height when hidden */
+    padding: 0;
+    margin: 0;
 }
 
 .standings-card {
     position: relative;
-    border-radius: 8px;
+    border-radius: 12px; /* Slightly larger border-radius for modern look */
     overflow: hidden;
     padding: 20px;
-    height: 400px; /* Consistent height for all cards */
+    height: 400px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+    cursor: pointer;
+    /* Apply initial stagger animation using :nth-child */
+    animation: fade-in-up 0.8s ease-out; 
 }
 
-/* Background Colors */
+/* Stagger the animation of the cards */
+.standings-grid .standings-card:nth-child(1) { animation-delay: 0.1s; }
+.standings-grid .standings-card:nth-child(2) { animation-delay: 0.2s; }
+.standings-grid .standings-card:nth-child(3) { animation-delay: 0.3s; }
+/* Add more :nth-child selectors if you have more cards */
+
+/* Card Hover Effect */
+.standings-card:hover {
+    transform: translateY(-8px) scale(1.02); /* Lift and slightly scale */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+    z-index: 10; /* Ensure the hovered card is on top */
+}
+
+/* Background Colors - No change, but good to keep */
 .blue-bg { background: linear-gradient(135deg, #0d1a3a, #1a3360); }
 .orange-bg { background: linear-gradient(135deg, #ff8c00, #e65c00); }
 .green-bg { background: linear-gradient(135deg, #004d40, #008060); }
 
-/* Position Styling */
+/* Position Styling - No change, but good to keep */
 .position {
     font-size: 3em;
     font-weight: 900;
@@ -532,28 +657,41 @@ h1 {
 }
 
 .first-place {
-    /* Slightly bigger/more prominent card for 1st place if desired */
-    /* Example: transform: scale(1.03); */
+    /* Optional: Add a subtle animation/glow for the 1st place card */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-/* --- Driver Card Specific Styling --- */
-.driver-img {
+/* --- Image & Content Styling - Add transition for images --- */
+.driver-img, .car-img {
     position: absolute;
     bottom: 0;
     right: 0;
-    height: 80%; /* Takes up most of the card height */
+    height: 80%; 
     width: auto;
     object-fit: contain;
-    pointer-events: none; /* Prevents image from interfering with clicks */
+    pointer-events: none; 
     z-index: 1;
     opacity: 0.9;
-    transform: translateX(10%); /* Shift driver slightly to the right */
+    transform: translateX(10%); 
+    /* Add transition for a subtle effect on hover */
+    transition: transform 0.5s ease;
+}
+
+.standings-card:hover .driver-img {
+    transform: translateX(0); /* Slide driver image slightly back on hover */
 }
 
 .info {
     z-index: 2;
     position: relative;
+    /* Add animation for info text */
+    transition: transform 0.3s ease;
 }
+
+.standings-card:hover .info {
+    transform: translateY(-5px); /* Lift text slightly on hover */
+}
+
 
 .name {
     font-size: 1.8em;
@@ -585,6 +723,22 @@ h1 {
 
 
 /* --- Team Card Specific Styling --- */
+.car-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 90%;
+    height: auto;
+    object-fit: contain;
+    z-index: 1;
+    opacity: 0.9;
+    transform: translateY(10%); 
+}
+
+.standings-card:hover .car-img {
+    transform: translateY(0); /* Slide car image slightly up on hover */
+}
+
 .points-team {
     font-size: 2.2em;
     font-weight: 700;
@@ -596,18 +750,4 @@ h1 {
     margin: 2px 0;
     color: rgba(255, 255, 255, 0.8);
 }
-
-.car-img {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 90%;
-    height: auto;
-    object-fit: contain;
-    z-index: 1;
-    opacity: 0.9;
-    /* Adjust position to be visible at the bottom */
-    transform: translateY(10%); 
-}
-
 

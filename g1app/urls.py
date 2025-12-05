@@ -21,5 +21,13 @@ urlpatterns = [
     # article model url
     path('article/<int:id>/', views.article_detail, name='article_detail'),
 
+    # race result
+    path("race-results/", views.race_results, name="race_results"),
+
+    # video details
+    path("video/<int:id>/", views.video_detail, name="video_detail"),
+
+
+
 
 ]

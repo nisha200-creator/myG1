@@ -5,10 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Inspired Homepage</title>
+    <title>G1N</title>
     <link rel="stylesheet" href="{% static 'g1app/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'g1app/css/header_footer.css' %}">
+
     <link rel="stylesheet" href="{% static '/g1app/css/auth.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'g1app/images/favicon.png' %}">
 
     <style>
         /* USER MENU */
@@ -179,7 +182,24 @@
         }
 
 
-        /* article time */
+
+        /* display mode */
+
+        :root.light-mode {
+            --bg: #ffffff;
+            --text: #000000;
+        }
+
+        :root.dark-mode {
+            --bg: #0d0d14;
+            --text: #ffffff;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s ease, color 0.3s ease;
+        }
     </style>
 </head>
 
@@ -187,7 +207,7 @@
     <header class="main-header">
         <div class="logo">
             <a href="{% url 'index' %}">
-                <img src="{% static '/g1app/images/logo.png' %}" alt="F1 Logo" class="logo-img">
+                <img src="{% static '/g1app/images/logo.png' %} " alt="F1 Logo" class="logo-img">
 
             </a>
         </div>
@@ -196,18 +216,16 @@
             <ul>
                 <!-- <li><a href="#">Race Series</a></li> -->
                 <li><a href="{% url 'schedule' %}">Schedule</a></li>
-                <li><a href="#">Results</a></li>
+                <li><a href="{% url 'race_results' %}">Results</a></li>
                 <li><a href="{% url 'news' %}">News</a></li>
-
                 <li><a href="#">Drivers</a></li>
                 <li><a href="{% url 'teams' %}">Teams</a></li>
-                <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
-                <li><a href="#">G1 Members' Area</a></li>
+                <!-- <li><a href="#">G1 Members' Area</a></li> -->
             </ul>
         </nav>
         <nav class="secondary-nav">
             <ul>
-                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'about' %}">G1 Members' Area</a></li>
                 <li><a href="#">Hospitality</a></li>
                 <li><a href="#">Experiences</a></li>
 
@@ -245,43 +263,43 @@
 
     <main class="hero-section">
 
-    {% if featured %}
-    <div class="hero-main">
-        <img src="{{ featured.thumbnail.url }}" alt="{{ featured.title }}" class="hero-image">
-        <div class="image-overlay">
-            <span class="category-tag">{{ featured.category }}</span>
-            <h2>
-                <a href="{% url 'article_detail' featured.id %}">
-                    {{ featured.title }}
-                </a>
-            </h2>
-        </div>
-    </div>
-    {% endif %}
-
-    <aside class="hero-sidebar">
-
-        {% for article in sidebar_articles %}
-        <article class="sidebar-item">
-            <div class="item-thumbnail">
-                <a href="{% url 'article_detail' article.id %}">
-                    <img src="{{ article.thumbnail.url }}" class="thumb-image" alt="{{ article.title }}">
-                </a>
+        {% if featured %}
+        <div class="hero-main">
+            <img src="{{ featured.thumbnail.url }}" alt="{{ featured.title }}" class="hero-image">
+            <div class="image-overlay">
+                <span class="category-tag">{{ featured.category }}</span>
+                <h2>
+                    <a href="{% url 'article_detail' featured.id %}">
+                        {{ featured.title }}
+                    </a>
+                </h2>
             </div>
+        </div>
+        {% endif %}
 
-            <p>
-                <a href="{% url 'article_detail' article.id %}">
-                    {{ article.title }}
-                </a>
-            </p>
+        <aside class="hero-sidebar">
 
-            <span class="article-time">{{ article.time_ago }}</span>
-        </article>
-        {% endfor %}
+            {% for article in sidebar_articles %}
+            <article class="sidebar-item">
+                <div class="item-thumbnail">
+                    <a href="{% url 'article_detail' article.id %}">
+                        <img src="{{ article.thumbnail.url }}" class="thumb-image" alt="{{ article.title }}">
+                    </a>
+                </div>
 
-    </aside>
+                <p>
+                    <a href="{% url 'article_detail' article.id %}">
+                        {{ article.title }}
+                    </a>
+                </p>
 
-</main>
+                <span class="article-time">{{ article.time_ago }}</span>
+            </article>
+            {% endfor %}
+
+        </aside>
+
+    </main>
 
 
 
@@ -300,66 +318,22 @@
 
         <div class="video-carousel" id="videoCarousel">
 
+            {% for video in videos %}
             <article class="video-card">
-                <div class="video-container">
-                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
-                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
-                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
-
-                    <!-- <span class="duration">1:27</span> -->
-                    <button class="play-icon" aria-label="Play video"></button>
-                </div>
-                <p class="video-title">2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole
-                </p>
+                <a href="{% url 'video_detail' video.id %}">
+                    <div class="video-container">
+                        <video class="f1-video-player" poster="{{ video.thumbnail.url }}"></video>
+                        <button class="play-icon"></button>
+                    </div>
+                </a>
+                <p class="video-title">{{ video.title }}</p>
             </article>
 
-            <article class="video-card">
-                <div class="video-container">
-                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
-                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
-                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
-                    <!-- <span class="duration">16:24</span> -->
-                    <button class="play-icon" aria-label="Play video"></button>
-                </div>
-                <p class="video-title">TECH TALK – How to fix Mercedes’ difficult car</p>
-            </article>
-
-            <article class="video-card">
-                <div class="video-container">
-                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
-                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
-                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
-                    <!-- <span class="duration">1:23</span> -->
-                    <button class="play-icon" aria-label="Play video"></button>
-                </div>
-                <p class="video-title">GHOST CAR: See how Piastri beat Russell to Sprint pole in Qatar</p>
-            </article>
-
-            <article class="video-card">
-                <div class="video-container">
-                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
-                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
-                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
-                    <!-- <span class="duration">0:19</span> -->
-                    <button class="play-icon" aria-label="Play video"></button>
-                </div>
-                <p class="video-title">2025 Qatar GP Sprint Qualifying: Piastri crosses the line to seal pole for the
-                    Sprint</p>
-            </article>
-
-            <article class="video-card">
-                <div class="video-container">
-                    <video class="f1-video-player" poster="{% static '/g1app/images/thumbnail_demo.jpg' %}"
-                        data-video-url="{% static '/g1app/videos/demo_video.mp4' %}" preload="metadata"
-                        title="2025 Qatar GP Sprint Qualifying: Ride onboard as Oscar Piastri claims Sprint Pole"></video>
-                    <!-- <span class="duration">6:46</span> -->
-                    <button class="play-icon" aria-label="Play video"></button>
-                </div>
-                <p class="video-title">Sprint Qualifying Highlights: 2025 Qatar Grand Prix</p>
-            </article>
+            {% endfor %}
 
         </div>
     </section>
+
 
 
 
@@ -371,55 +345,36 @@
 
         <div class="editors-picks-grid" id="editorPicksCarousel">
 
-            <article class="editor-pick-card main-card">
-                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Norris" class="card-image">
-                <div class="card-content">
-                    <h3>Norris laments McLaren's Qatar strategy as title goes to Abu Dhabi</h3>
-                </div>
+            {% for article in sidebar_articles %}
+            <article class="editor-pick-card {% if forloop.first or forloop.counter == 4 %}main-card{% endif %}">
+                <a href="{% url 'article_detail' article.id %}" class="editor-pick-link">
+
+                    <!-- Image -->
+                    <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}"
+                        class="{% if forloop.first or forloop.counter == 4 %}card-image{% else %}card-image-small{% endif %}">
+
+                    <div class="card-content">
+                        {% if forloop.first or forloop.counter == 4 %}
+                        <h3>{{ article.title }}</h3>
+                        {% else %}
+                        <p>{{ article.title }}</p>
+                        {% endif %}
+                    </div>
+
+                </a>
             </article>
 
-            <article class="editor-pick-card">
-                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Verstappen" class="card-image-small">
-                <div class="card-content">
-                    <p>Verstappen believes 'it's all possible now' after Qatar triumph</p>
-                </div>
-            </article>
+            {% endfor %}
 
-            <article class="editor-pick-card">
-                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Sainz" class="card-image-small">
-                <div class="card-content">
-                    <p>Sainz 'over the moon' with podium in Qatar</p>
-                </div>
-            </article>
-
-            <article class="editor-pick-card main-card">
-                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Race Start" class="card-image">
-                <div class="card-content">
-                    <h3>What the teams said – Race day in Qatar</h3>
-                </div>
-            </article>
-
-            <article class="editor-pick-card">
-                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Newey" class="card-image-small">
-                <div class="card-content">
-                    <p>Newey 'determined not to dilute focus with Team Principal role</p>
-                </div>
-            </article>
-
-            <article class="editor-pick-card">
-                <img src="{% static '/g1app/images/thumbnail_demo.jpg' %}" alt="Formaroli" class="card-image-small">
-                <div class="card-content">
-                    <p>Formaroli seals title with a round to spare</p>
-                </div>
-            </article>
         </div>
     </section>
+
 
     <!-- drivers and Team -->
 
 
     <header>
-        <div class="red-bar"></div>
+        <div class="india-flag-bar"></div>
     </header>
 
     <div class="container">
@@ -504,149 +459,157 @@
 
             </div>
         </section>
+    </div>
 
-        <!-- COOKIE CONSENT POPUP -->
-        <!-- COOKIE BOTTOM BAR -->
-        <div id="cookiePopup" class="cookie-bar hidden">
+    <!-- COOKIE CONSENT POPUP -->
+    <!-- COOKIE BOTTOM BAR -->
+    <div id="cookiePopup" class="cookie-bar hidden">
 
-            <div class="cookie-left">
-                <h3>We value your privacy</h3>
-                <p>
-                    We use technologies such as cookies in order to integrate with social media,
-                    serve relevant advertising, analyse our traffic and improve your experience.
-                    To accept cookies, click “I Accept” or manage your settings.
-                </p>
-            </div>
-
-            <div class="cookie-right">
-                <!-- <button id="manageCookies" class="cookie-settings">› Cookies Settings</button> -->
-                <button id="acceptCookies" class="cookie-accept-red">Accept All Cookies</button>
-            </div>
-
+        <div class="cookie-left">
+            <h3>We value your privacy</h3>
+            <p>
+                We use technologies such as cookies in order to integrate with social media,
+                serve relevant advertising, analyse our traffic and improve your experience.
+                To accept cookies, click “I Accept” or manage your settings.
+            </p>
         </div>
 
+        <div class="cookie-right">
+            <!-- <button id="manageCookies" class="cookie-settings">› Cookies Settings</button> -->
+            <button id="acceptCookies" class="cookie-accept-red">Accept All Cookies</button>
+        </div>
+
+    </div>
 
 
+    <!-- footer -->
 
-
-
-
-
-
-        <!-- footer -->
-
-        <footer class="f1-footer">
-            <div class="footer-row footer-app-banner">
-                <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
-                <div class="app-stores">
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
-                            class="store-badge">
-                    </a>
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
-                            class="store-badge">
-                    </a>
-                </div>
+    <footer class="f1-footer">
+        <div class="footer-row footer-app-banner">
+            <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
+            <div class="app-stores">
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
             </div>
+        </div>
 
-            <div class="footer-row footer-main-nav">
-                <nav class="footer-nav">
-                    <ul>
-                        <li><a href="#">Schedule</a></li>
-                        <li><a href="#">Drivers</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Teams</a></li>
-                        <!-- <li><a href="#">Fantasy & Gaming</a></li> -->
-                        <li><a href="#">Cookie Preferences</a></li>
-                        <!-- <li class="more-link"><a href="#">More <span class="dropdown-arrow"></span></a></li> -->
-                    </ul>
-                </nav>
-                <div class="f1-red-line">
-                    <span class="f1-logo-mini">G1</span>
-                </div>
+        <div class="footer-row footer-main-nav">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                    <li><a href="{% url 'race_results' %}">Results</a></li>
+                    <li><a href="{% url 'news' %}">News</a></li>
+                    <li><a href="#">Drivers</a></li>
+                    <li><a href="{% url 'teams' %}">Teams</a></li>
+                    <li><a href="#">Cookie Preferences</a></li>
+                </ul>
+            </nav>
+            <div class="f1-red-line">
+                <span class="f1-logo-mini">G1</span>
             </div>
+        </div>
 
-            <div class="footer-row footer-bottom-bar">
-                <div class="social-links">
+        <div class="footer-row footer-bottom-bar">
+            <!-- <div class="social-links">
                     <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
                     <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
+                </div> -->
 
-                <button class="display-mode-selector">
-                    Display mode
-                    <span class="dropdown-arrow-icon"></span>
-                </button>
 
-                <p class="copyright">
-                    © 2003-2025 G1 World Championship Limited
-                </p>
+
+            <button class="display-mode-selector">
+                Display mode
+                <span class="dropdown-arrow-icon"></span>
+            </button>
+
+            <div class="display-mode-menu hidden">
+                <div class="mode-option" data-mode="system">System</div>
+                <div class="mode-option" data-mode="light">Light mode</div>
+                <div class="mode-option" data-mode="dark">Dark mode</div>
             </div>
-        </footer>
-        <script src="{% static 'g1app/js/index.js' %}" defer></script>
 
-        <!-- js FOR PROFILE DROPDOWN -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
 
-                const toggleBtn = document.getElementById("userToggle");
-                const dropdown = document.getElementById("dropdownMenu");
-                const arrow = document.querySelector(".arrow-icon");
 
-                toggleBtn.addEventListener("click", function (e) {
-                    e.stopPropagation();
 
-                    dropdown.classList.toggle("dropdown-show");
-                    arrow.classList.toggle("arrow-rotate");
-                });
+            <p class="copyright">
+                © 2003-2025 G1 World Championship Limited
+            </p>
+        </div>
+    </footer>
+    <script src="{% static 'g1app/js/index.js' %}" defer></script>
 
-                document.addEventListener("click", function () {
-                    dropdown.classList.remove("dropdown-show");
-                    arrow.classList.remove("arrow-rotate");
-                });
+    <!-- js for display mode -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
+            const menu = document.querySelector(".display-mode-menu");
+            const button = document.querySelector(".display-mode-selector");
+            const options = document.querySelectorAll(".mode-option");
+
+            // Toggle dropdown
+            button.addEventListener("click", () => {
+                menu.classList.toggle("hidden");
             });
 
-        </script>
+            // Load saved theme
+            let saved = localStorage.getItem("theme-mode") || "system";
+            applyTheme(saved);
+            setActive(saved);
 
-        <!-- cookies js -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
+            options.forEach(option => {
+                option.addEventListener("click", () => {
+                    let mode = option.dataset.mode;
+                    localStorage.setItem("theme-mode", mode);
+                    applyTheme(mode);
+                    setActive(mode);
+                    menu.classList.add("hidden");
+                });
+            });
 
-                const cookiePopup = document.getElementById("cookiePopup");
+            function applyTheme(mode) {
 
-                // SHOW ONLY FIRST TIME
-                if (localStorage.getItem("cookieConsent") === "true") {
-                    cookiePopup.classList.add("hidden");
-                } else {
-                    cookiePopup.classList.remove("hidden");
+                document.documentElement.classList.remove("light-mode", "dark-mode");
+
+                if (mode === "light") {
+                    document.documentElement.classList.add("light-mode");
                 }
+                else if (mode === "dark") {
+                    document.documentElement.classList.add("dark-mode");
+                }
+                else {
+                    // SYSTEM
+                    let systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                    if (systemDark) {
+                        document.documentElement.classList.add("dark-mode");
+                    } else {
+                        document.documentElement.classList.add("light-mode");
+                    }
+                }
+            }
 
-                // ACCEPT ALL BUTTON
-                document.getElementById("acceptCookies").addEventListener("click", function () {
-                    localStorage.setItem("cookieConsent", "true");
-                    cookiePopup.classList.add("hidden");
-                });
+            function setActive(mode) {
+                options.forEach(o => o.classList.remove("active"));
+                document.querySelector(`[data-mode="${mode}"]`).classList.add("active");
+            }
 
-                // SETTINGS BUTTON
-                document.getElementById("manageCookies").addEventListener("click", function () {
-                    alert("Cookie settings panel coming soon!");
-                    // Later we can open a real manage panel here
-                });
-
-            });
-        </script>
-
-
-
-
-
-
-
-
-
+        });
+    </script>
 </body>
 
 </html>
