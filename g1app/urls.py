@@ -14,8 +14,15 @@ urlpatterns = [
     path('register/', views.Register_page, name='Register_page'),
     path('logout/', views.logout_user, name='logout_user'),
 
+
+
+
     path('forgot-password/', views.forgot_password, name='forgot_password'),
-    path('reset-password/<str:token>/', views.reset_password, name='reset_password'),
+    path('verify-otp/', views.verify_otp, name='verify_otp'),
+    path('reset-password/', views.reset_password, name='reset_password'),
+
+ 
+
 
 
     # article model url
@@ -26,6 +33,12 @@ urlpatterns = [
 
     # video details
     path("video/<int:id>/", views.video_detail, name="video_detail"),
+
+
+    # subscribe
+    path("subscribe/", views.subscribe_page, name="subscribe_page"),
+    path("subscribe/save/", views.subscribe_save, name="subscribe_save"),
+
 
 
 

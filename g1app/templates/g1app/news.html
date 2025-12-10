@@ -52,6 +52,95 @@
         }
 
     
+       
+
+         /* USER MENU */
+        .user-menu {
+            position: relative;
+            list-style: none;
+        }
+
+        /* USER INFO (NAME + IMAGE + ARROW) */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff70;
+        }
+
+        .user-name {
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .arrow-icon {
+            color: #fff;
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        /* ROTATE ARROW WHEN ACTIVE */
+        .arrow-rotate {
+            transform: rotate(180deg);
+        }
+
+        /* DROPDOWN */
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            width: 160px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none !important;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .dropdown-show {
+            display: block !important;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* EACH LINE */
+        .dropdown-menu li {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 15px;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .dropdown-menu a:hover {
+            background: red;
+            color: #fff;
+        }
+    </style>
     </style>
 </head>
 

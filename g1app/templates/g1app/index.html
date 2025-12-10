@@ -102,91 +102,121 @@
         }
 
         /* COOKIES STYLE */
-
-
-        /* HIDE CLASS */
-        .hidden {
-            display: none !important;
-        }
-
         /* FULL-WIDTH BOTTOM COOKIE BAR */
-        .cookie-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #000;
-            color: #fff;
-            padding: 25px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 999999;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.6);
-        }
+.cookie-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 25px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999999;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.6);
+    animation: slideUp 0.4s ease forwards;
+}
 
-        /* LEFT CONTENT */
-        .cookie-left {
-            max-width: 60%;
-        }
+/* ANIMATION */
+@keyframes slideUp {
+    0% {transform: translateY(100%); opacity: 0;}
+    100% {transform: translateY(0); opacity: 1;}
+}
 
-        .cookie-left h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
+/* LEFT CONTENT */
+.cookie-left {
+    max-width: 60%;
+}
 
-        .cookie-left p {
-            font-size: 14px;
-            color: #ccc;
-            margin: 0;
-        }
+.cookie-left h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #fff;
+}
 
-        /* RIGHT BUTTONS */
-        .cookie-right {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            min-width: 260px;
-        }
+.cookie-left p {
+    font-size: 14px;
+    color: #ccc;
+    margin: 0;
+    line-height: 1.4;
+}
 
-        /* SETTINGS BUTTON */
-        .cookie-settings {
-            background: transparent;
-            border: none;
-            color: #bbb;
-            text-align: right;
-            font-size: 14px;
-            cursor: pointer;
-        }
+/* RIGHT BUTTONS */
+.cookie-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    min-width: 260px;
+}
 
-        .cookie-settings:hover {
-            color: #fff;
-        }
+/* SETTINGS BUTTON */
+.cookie-settings {
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+}
 
-        /* ACCEPT ALL BUTTON — RED */
-        .cookie-accept-red {
-            background: #e10600;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
+.cookie-settings:hover {
+    color: #fff;
+}
 
-        .cookie-accept-red:hover {
-            background: #b30500;
-        }
+/* ACCEPT ALL BUTTON */
+.cookie-accept-red {
+    background: #e10600;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+.cookie-accept-red:hover {
+    background: #b30500;
+}
+
+/* HIDE ELEMENTS */
+.hidden {
+    display: none !important;
+}
+
+/* COOKIE SETTINGS PANEL */
+.cookie-settings-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    padding: 20px;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    z-index: 999999;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0; transform: translateY(20px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
 
 
 
         /* display mode */
 
         :root.light-mode {
-            --bg: #ffffff;
+            --bg: #c4c4c4;
             --text: #000000;
         }
 
@@ -253,11 +283,10 @@
                 <li><a href="{% url 'Register_signIn' %}">Sign In</a></li>
                 {% endif %}
 
-                <li><button class="subscribe-btn">Subscribe</button></li>
+                <li><a href="{% url 'subscribe_page' %}" class="subscribe-btn">Subscribe</a></li>
+
             </ul>
         </nav>
-
-
     </header>
     <!-- countdown-bar -->
 
@@ -463,23 +492,51 @@
 
     <!-- COOKIE CONSENT POPUP -->
     <!-- COOKIE BOTTOM BAR -->
-    <div id="cookiePopup" class="cookie-bar hidden">
 
-        <div class="cookie-left">
-            <h3>We value your privacy</h3>
-            <p>
-                We use technologies such as cookies in order to integrate with social media,
-                serve relevant advertising, analyse our traffic and improve your experience.
-                To accept cookies, click “I Accept” or manage your settings.
-            </p>
-        </div>
+   <div id="cookiePopup" class="cookie-bar hidden">
 
-        <div class="cookie-right">
-            <!-- <button id="manageCookies" class="cookie-settings">› Cookies Settings</button> -->
-            <button id="acceptCookies" class="cookie-accept-red">Accept All Cookies</button>
-        </div>
-
+    <div class="cookie-left">
+        <h3>We value your privacy</h3>
+        <p>
+            We use cookies to improve your experience, analyze site usage, 
+            enhance functionality, and deliver personalized advertising.
+            Manage your cookie preferences below.
+        </p>
     </div>
+
+    <div class="cookie-right">
+        <button id="manageCookies" class="cookie-settings">Manage Settings</button>
+        <button id="acceptCookies" class="cookie-accept-red">Accept All Cookies</button>
+    </div>
+</div>
+
+<!-- Settings Panel -->
+<div id="cookieSettingsPanel" class="cookie-settings-panel hidden">
+    <h2>Cookie Preferences</h2>
+
+    <label>
+        <input type="checkbox" checked disabled>
+        Strictly Necessary Cookies (Always Active)
+    </label>
+
+    <label>
+        <input type="checkbox" id="analyticsCookies">
+        Performance & Analytics Cookies
+    </label>
+
+    <label>
+        <input type="checkbox" id="preferenceCookies">
+        Functional / Preference Cookies
+    </label>
+
+    <label>
+        <input type="checkbox" id="marketingCookies">
+        Targeting & Advertising Cookies
+    </label>
+
+    <button id="saveCookieSettings">Save Preferences</button>
+</div>
+
 
 
     <!-- footer -->
@@ -610,6 +667,7 @@
 
         });
     </script>
+    <script src="{% static 'g1app/js/index.js' %}" defer></script>
 </body>
 
 </html>

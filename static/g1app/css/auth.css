@@ -1,3 +1,6 @@
+/* sign in register css */
+
+
 /* Background */
 .auth-bg {
     /* background: url("{% static 'g1app/images/back_signIn_regstr.png' %}") center/cover no-repeat; */
@@ -21,6 +24,7 @@
     box-shadow: 0px 0px 18px rgba(255, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     border-left: 3px solid red;
+ 
 }
 
 
@@ -46,7 +50,7 @@
 }
 
 .input-group input {
-    width: 100%;
+   width: 94%;
     padding: 10px;
     margin-top: 6px;
     background: #111;
@@ -94,10 +98,5 @@
 .switch-link a:hover {
     text-decoration: underline;
 }
-
-
-
-/* login dropdown status */
-
 
 

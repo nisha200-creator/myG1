@@ -53,3 +53,11 @@ class RaceResultAdmin(admin.ModelAdmin):
     list_filter = ('team', 'winner')
     search_fields = ('grand_prix', 'winner', 'team')
     ordering = ('date',)
+
+
+
+
+# subscribe
+from .models import Subscriber
+
+admin.site.register(Subscriber)

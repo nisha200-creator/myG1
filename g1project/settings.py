@@ -55,7 +55,9 @@ ROOT_URLCONF = 'g1project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+       'DIRS': [ BASE_DIR.parent / 'templates' ],
+
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,5 +138,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'yourgmail@gmail.com'
-EMAIL_HOST_PASSWORD = 'your-app-password'
+EMAIL_HOST_USER = 'nisha70016@gmail.com'
+EMAIL_HOST_PASSWORD = 'ohih jnuj fdie tmoa'

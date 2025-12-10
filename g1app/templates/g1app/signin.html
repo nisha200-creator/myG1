@@ -17,6 +17,7 @@
 <div class="auth-container">
     <div class="auth-card">
         <h2 class="auth-title">Sign In</h2>
+        
 
         <form method="POST">
             {% csrf_token %}
@@ -36,11 +37,12 @@
             <p class="switch-link">
                 Don't have an account?
                 <a href="{% url 'Register_page' %}">Register</a>       
-                <a href="{% url 'forgot_password' %}" style="color:#41d37c;">Forgot Password?</a>
+                <a href="{% url 'forgot_password' %}" style="color:#ffdd57;">Forgot Password?</a>
             </p>
         </form>
     </div>
 </div>
+
 
 </body>
 </html>

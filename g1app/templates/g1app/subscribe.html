@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subscribe</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Fullscreen sports car video */
+        video#bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.45);
+            z-index: -10;
+        }
+
+        /* Neon Road Light Effect */
+        .neon-road {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(180deg, transparent, rgba(0,255,255,0.3));
+            filter: blur(40px);
+            animation: roadGlow 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes roadGlow {
+            0% { opacity: .4; }
+            100% { opacity: .8; }
+        }
+
+        /* Floating smoke effect */
+        .smoke {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/9jvCwT4.png');
+            background-size: cover;
+            opacity: 0.15;
+            animation: smokeMove 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes smokeMove {
+            from { transform: translateX(-10%); }
+            to   { transform: translateX(10%); }
+        }
+
+        /* 3D floating box */
+        .subscribe-box {
+               width: 710px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 40px rgba(0,255,170,0.4);
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            animation: floatUp 1.5s ease-out;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(50px) scale(0.8); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        h2 {
+            color: #00f7ff;
+            font-size: 28px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0,255,255,0.7);
+        }
+
+        p {
+            color: #d9d9d9;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 96%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            margin-bottom: 15px;
+            outline: none;
+            font-size: 15px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            box-shadow: inset 0 0 10px rgba(0,255,255,0.3);
+        }
+
+        input::placeholder { color: #eee; }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(90deg, #00f7ff, #008bff);
+            color: #000;
+            font-size: 17px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 20px #00eaff;
+        }
+
+        /* Center box */
+        .center {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #msg {
+            margin-top: 12px;
+            color: #00ffea;
+        }
+
+
+        a:hover h2 {
+    color: #00eaff;
+    transform: translateX(-5px);
+}
+    </style>
+</head>
+<body>
+
+    <!-- Sports car video background -->
+    <video id="bg-video" autoplay muted loop>
+        <source src="{% static '/g1app/videos/car_video.mp4' %}" type="video/mp4">
+    </video>
+
+    <!-- Effects -->
+    <div class="neon-road"></div>
+    <div class="smoke"></div>
+
+    <div class="center">
+        <div class="subscribe-box">
+            <h2>Join the G1 Elite Club</h2>
+            <p>Get exclusive access to luxury car news, events & offers.</p>
+
+            <form id="subscribeForm">
+                <input type="email" name="email" placeholder="Enter your email..." required>
+                <button type="submit">Subscribe</button>
+                <a href="/" 
+                   style="text-decoration:none; display:inline-block; margin-top:20px;">
+                    <h2 style="font-size: 1rem; color:white; transition:0.3s;">
+                        Back to Home
+                    </h2>
+                </a>                
+            </form>
+
+            <p id="msg"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("subscribeForm").addEventListener("submit", function(e){
+            e.preventDefault();
+            let data = new FormData(this);
+
+            fetch("{% url 'subscribe_save' %}", {
+                method: "POST",
+                body: data,
+                headers: { "X-CSRFToken": "{{ csrf_token }}" }
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("msg").innerHTML = data.msg;
+            });
+        });
+    </script>
+
+</body>
+</html>
