@@ -4,7 +4,10 @@ from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 from django.utils import timezone
 from datetime import timedelta
-from .models import UserTable, Article, Video, Race, RaceResult
+from .models import UserTable, Article, Video, Race, RaceResult, PasswordResetOTP
+import random
+from django.conf import settings
+
 
 
 
@@ -13,7 +16,7 @@ from .models import UserTable, Article, Video, Race, RaceResult
 
 def index(request):
     featured = Article.objects.filter(is_featured=True).first()
-    sidebar_articles = Article.objects.filter(is_featured=False).order_by('-created_at')[:5]
+    sidebar_articles = Article.objects.filter(is_featured=False).order_by('-created_at')[:6]
     videos = Video.objects.all().order_by('-created_at')[:10]
 
     return render(request, 'g1app/index.html', {
@@ -94,13 +97,7 @@ def logout_user(request):
 
 # ------------------ FORGOT / RESET PASSWORD ------------------
 
-import random
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.core.mail import send_mail
-from django.conf import settings
 
-from .models import UserTable, PasswordResetOTP
 
 
 # ------------------ FORGOT PASSWORD ------------------
@@ -198,13 +195,14 @@ def reset_password(request):
 
 # ------------------ ARTICLE DETAILS PAGE ------------------
 
-def article_detail(request, id):
-    article = get_object_or_404(Article, id=id)
+
+
+def article_detail(request, slug, category=None):
+    article = get_object_or_404(Article, slug=slug)
 
     return render(request, 'g1app/article_details.html', {
         'article': article
     })
-
 
 
 # race result page

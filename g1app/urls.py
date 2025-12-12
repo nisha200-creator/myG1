@@ -4,6 +4,10 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('news/', views.news, name='news'),
+    # NEWS detail by category
+    path('news/<str:category>/<slug:slug>/', views.article_detail, name='news_article_detail'),
+   
+
     path('teams/', views.teams, name='teams'),
     path('about/', views.about, name='about'),
     path('schedule/', views.schedule, name='schedule'),
@@ -26,7 +30,9 @@ urlpatterns = [
 
 
     # article model url
-    path('article/<int:id>/', views.article_detail, name='article_detail'),
+    # path('article/<int:id>/', views.article_detail, name='article_detail'),
+    path('article/<slug:slug>/', views.article_detail, name='article_detail'),
+
 
     # race result
     path("race-results/", views.race_results, name="race_results"),

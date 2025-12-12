@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.text import slugify
 
 
 # ============================
@@ -31,7 +32,6 @@ class PasswordResetOTP(models.Model):
 # ============================
 # ARTICLE MODEL
 # ============================
-
 class Article(models.Model):
 
     CATEGORY_CHOICES = [
@@ -53,20 +53,16 @@ class Article(models.Model):
     is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
 
+    slug = models.SlugField(blank=True)   # ✅ Correct
+
     def __str__(self):
         return self.title
 
-    def time_ago(self):
-        now = timezone.now()
-        diff = now - self.created_at
-
-        if diff.days >= 1:
-            return f"{diff.days} days ago"
-        elif diff.seconds >= 3600:
-            return f"{diff.seconds // 3600} hours ago"
-        elif diff.seconds >= 60:
-            return f"{diff.seconds // 60} minutes ago"
-        return "Just now"
+    # ✅ Correct auto-slug method INSIDE the model
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
 
 # ============================

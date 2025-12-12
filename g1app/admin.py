@@ -18,10 +18,24 @@ from .models import Article, Video, Race, RaceResult
 # --------------------------
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'is_featured', 'created_at')
+    list_display = ('title', 'slug', 'category', 'is_featured', 'created_at')
     list_filter = ('category', 'is_featured')
     search_fields = ('title', 'subtitle', 'content')
-    fields = ('title', 'subtitle', 'content', 'category', 'thumbnail', 'video', 'is_featured', 'created_at')
+
+    fields = (
+        'title',
+        'slug',          # ✅ ADD THIS LINE
+        'subtitle',
+        'content',
+        'category',
+        'thumbnail',
+        'video',
+        'is_featured',
+        'created_at',
+    )
+
+    prepopulated_fields = {'slug': ('title',)}   # ✅ Auto-generate slug in admin
+
 
 
 

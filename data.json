@@ -1,0 +1,123 @@
+[
+  {
+    "model": "g1app.article",
+    "pk": 1,
+    "fields": {
+      "title": "We did a worse job than the others - Vasseur blames Ferrari set-up for tough situation in Qatar",
+      "subtitle": "Performance Unleashed",
+      "content": "Ferrari Team Principal Fred Vasseur has conceded that they did a worse job than their rivals in the Qatar Grand Prix, which contributed to one of their lowest points hauls of the season.\n\nThe Scuderia ended the weekend with four points after neither driver scored in the Sprint and Charles Leclerc could only manage P8 in Sunday race. They claimed fewer points only once this season, during the double DNF at Zandvoort.\n\nLeclerc admitted there is zero performance in the car as he struggled with oversteer throughout the weekend, including a major spin in Q3 that placed him P10 on the grid.",
+      "category": "NEWS",
+      "thumbnail": "articles/thumbnail_demo.jpg",
+      "video": "articles/videos/demo_video.mp4",
+      "is_featured": true,
+      "created_at": "2025-12-02T11:37:11Z"
+    }
+  },
+  {
+    "model": "g1app.article",
+    "pk": 2,
+    "fields": {
+      "title": "5 Winners and 5 Losers from Qatar - Who starred around the Lusail International Circuit?",
+      "subtitle": "Lawrence Barretto picks out the winners and losers from a pivotal Qatar Grand Prix.",
+      "content": "As Red Bull and Max Verstappen celebrated a strong victory in Qatar, McLaren wondered how they lost the lead. Barretto selects winners and losers from Lusail.\n\nWinner: Max Verstappen\nHe needed to beat Norris to keep championship hopes alive and delivered another win.",
+      "category": "NEWS",
+      "thumbnail": "articles/demo_img2_kCxAx1t.jpg",
+      "video": "",
+      "is_featured": false,
+      "created_at": "2025-12-02T12:02:53Z"
+    }
+  },
+  {
+    "model": "g1app.article",
+    "pk": 3,
+    "fields": {
+      "title": "F2 Champion Fornaroli joins McLaren Driver Development Programme",
+      "subtitle": "McLaren adds three new names to their Driver Development Programme.",
+      "content": "F2 Champion Leonardo Fornaroli has joined McLaren Development Programme along with Richard Verschoor and Christian Costoya.\n\nFornaroli sealed the F2 title in Qatar with consistent podium finishes through the season. This marks back-to-back championship wins after F3 the previous year.",
+      "category": "NEWS",
+      "thumbnail": "articles/demo_img1_bcTcb5k.jpg",
+      "video": "",
+      "is_featured": false,
+      "created_at": "2025-12-02T12:14:32Z"
+    }
+  },
+  {
+    "model": "g1app.article",
+    "pk": 4,
+    "fields": {
+      "title": "Championship Permutations - What Norris needs in Abu Dhabi",
+      "subtitle": "Title fight goes to final round",
+      "content": "Following Verstappen unexpected win in Qatar, the 2025 title goes to a 3-way showdown. Norris started P2 but strategy errors cost him a potential victory.",
+      "category": "DRIVER",
+      "thumbnail": "articles/g1_about_EL5Iota.avif",
+      "video": "",
+      "is_featured": false,
+      "created_at": "2025-12-04T10:21:36Z"
+    }
+  },
+  {
+    "model": "g1app.video",
+    "pk": 1,
+    "fields": {
+      "title": "Calum Nicholas gives Max Verstappen a hot lap at Silverstone",
+      "video_file": "videos/demo_video.mp4",
+      "thumbnail": "videos/thumbnails/thumbnail_demo.jpg",
+      "created_at": "2025-12-04T10:17:35Z"
+    }
+  },
+  {
+    "model": "g1app.video",
+    "pk": 2,
+    "fields": {
+      "title": "Thanks to Max Verstappen",
+      "video_file": "videos/demo_video_UR6wxYd.mp4",
+      "thumbnail": "videos/thumbnails/g1_about.avif",
+      "created_at": "2025-12-04T10:23:06Z"
+    }
+  },
+  {
+    "model": "g1app.race",
+    "pk": 1,
+    "fields": {
+      "round_number": 2,
+      "name": "Delhi",
+      "date_range": "14 - 16 MAR 2026",
+      "image": "races/g1_about.avif"
+    }
+  },
+  {
+    "model": "g1app.race",
+    "pk": 2,
+    "fields": {
+      "round_number": 1,
+      "name": "Mumbai",
+      "date_range": "20 - 30 MAR 2026",
+      "image": "races/G1N_race.avif"
+    }
+  },
+  {
+    "model": "g1app.race",
+    "pk": 3,
+    "fields": {
+      "round_number": 3,
+      "name": "Dubai",
+      "date_range": "01 - 10 SEPT 2026",
+      "image": "races/GN1_2.avif"
+    }
+  },
+  {
+    "model": "g1app.raceresult",
+    "pk": 1,
+    "fields": {
+      "grand_prix": "Australia",
+      "country_flag": "flags/Flag-Australia.png",
+      "date": "2025-12-25",
+      "winner": "Lando Norris",
+      "winner_img": "drivers/Kimi_Antonelli_OVHZ6Zk.jpg",
+      "team": "McLaren",
+      "team_logo": "teams/logo1.png",
+      "laps": 50,
+      "time": "1:42:06.304"
+    }
+  }
+]

@@ -186,6 +186,7 @@ h1 {
     background-color: #cc0000;
 }
 
+
 /* Class to hide the button when no more articles are left */
 .load-more-btn.hidden {
     display: none;
