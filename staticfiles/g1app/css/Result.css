@@ -1,0 +1,45 @@
+body {
+    background: #0d0d14;
+    color: #fff;
+    font-family: 'Formula1 Display', sans-serif;
+}
+
+.page-title {
+    margin: 40px;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.results-table {
+    width: 90%;
+    margin: auto;
+    background: #15151e;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    padding: 18px 10px;
+    text-align: left;
+    font-size: 14px;
+    color: #b5b5b5;
+    border-bottom: 1px solid #292932;
+}
+
+tbody td {
+    padding: 18px 10px;
+    font-size: 15px;
+    border-bottom: 1px solid #1f1f29;
+}
+
+.flag, .driver-icon, .team-icon {
+    height: 76px;
+    width: 84px;
+    margin-right: 8px;
+    vertical-align: middle;
+}

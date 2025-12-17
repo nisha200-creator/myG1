@@ -1,0 +1,267 @@
+/* Variables for easy color adjustments */
+:root {
+    --f1-dark-bg: #14141d; /* Very Dark Purple/Grey */
+    --f1-text-color: #ffffff;
+    --f1-red: #e10600; /* Signature F1 Red */
+    --f1-light-grey: #a0a0a0;
+    --f1-nav-bg: #1f1f27; /* Slightly lighter background for the nav */
+    --f1-countdown-bg: #1f1f27;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Use a web-safe font or Titillium Web/Inter */
+}
+
+body {
+    background-color: var(--f1-dark-bg);
+    color: var(--f1-text-color);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--f1-text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--f1-red);
+}
+
+ul {
+    list-style: none;
+}
+
+/* 1. Header/Navigation Bar Styling */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--f1-nav-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 83px; 
+}
+
+.logo {
+    /* Keep existing styles */
+    font-weight: bold;
+    color: var(--f1-red);
+    margin-right: 20px;
+    
+    height: 30px; 
+    display: flex; 
+    align-items: center;
+}
+
+/* --- New Style for the Image within the Logo Container --- */
+.logo-img {
+    height: 100px; 
+    width: auto; 
+    display: block;
+}
+.primary-nav ul, .secondary-nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+.secondary-nav {
+    margin-left: auto; /* Pushes secondary nav to the right */
+}
+
+.f1tv .red-text {
+    color: var(--f1-red);
+    font-weight: bold;
+}
+
+.subscribe-btn {
+    background-color: var(--f1-red);
+    color: var(--f1-text-color);
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+.subscribe-btn:hover {
+    background-color: #ff3333;
+}
+
+
+/* second logo */
+
+/* Ensure the link itself is a flexible container */
+.g1tv a {
+    display: flex;
+    align-items: center; 
+    height: 100%;
+}
+
+/* Style for the G1 Logo Image */
+.g1-logo-img {
+    height: 1.20em; 
+    width: auto; 
+    margin-right: 2px;
+    display: block;
+}
+
+/* If you kept the class as .f1tv, you might need to adjust the selector: */
+
+
+/* footer */
+
+
+
+.f1-footer {
+    background-color: var(--f1-dark-bg); 
+    padding: 20px 0;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%!important;
+}
+
+.footer-row {
+    max-width: 100% !important;   
+    width: 100%;   
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-app-banner {
+    padding-bottom: 25px;
+}
+
+.app-title {
+    font-size: 30px;
+    font-weight: 900; 
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.app-stores {
+    display: flex;
+    gap: 10px;
+}
+
+.store-badge {
+    height: 35px; 
+    width: auto;
+}
+
+.footer-main-nav {
+    display: block; 
+    padding-bottom: 25px;
+}
+
+.footer-nav ul {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    padding-bottom: 20px;
+}
+
+.more-link a {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--f1-text-color);
+    margin-left: 5px;
+    opacity: 0.7;
+}
+
+.f1-red-line {
+    position: relative;
+    height: 10px;
+    border-radius: 5px;
+    background: linear-gradient(
+        to right,
+        #FF9933,
+        #FFFFFF,
+        #138808)
+}
+
+
+.f1-logo-mini {
+    position: absolute;
+    top: -5px; 
+    left: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--f1-text-color);
+    background-color: var(--f1-dark-bg);
+    padding-right: 8px;
+    z-index: 10;
+}
+
+/* Row 3: Bottom Bar */
+.footer-bottom-bar {
+    justify-content: center; 
+    gap: 30px;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
+    margin-right: auto;
+}
+
+.social-links a {
+    opacity: 0.7;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    color: var(--f1-red);
+}
+
+.display-mode-selector {
+    background-color: transparent;
+    color: var(--f1-text-color);
+    border: 1px solid var(--f1-light-grey);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.display-mode-selector:hover {
+    border-color: var(--f1-red);
+}
+
+.dropdown-arrow-icon {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--f1-text-color);
+    margin-left: 8px;
+    opacity: 0.9;
+}
+
+.copyright {
+    color: var(--f1-light-grey);
+    font-size: 12px;
+    margin-left: 30px;
+}
+
+
+
+

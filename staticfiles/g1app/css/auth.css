@@ -1,0 +1,102 @@
+/* sign in register css */
+
+
+/* Background */
+.auth-bg {
+    /* background: url("{% static 'g1app/images/back_signIn_regstr.png' %}") center/cover no-repeat; */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Centering Container */
+.auth-container {
+    height: 97vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card */
+.auth-card {
+    width: 360px;
+    background: rgba(0,0,0,0.85);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 18px rgba(255, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    border-left: 3px solid red;
+ 
+}
+
+
+
+/* Title */
+.auth-title {
+    text-align: center;
+    font-size: 28px;
+    color: white;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    color: #fff;
+    font-size: 14px;
+}
+
+.input-group input {
+   width: 94%;
+    padding: 10px;
+    margin-top: 6px;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.input-group input:focus {
+    border-color: red;
+    outline: none;
+}
+
+/* Button */
+.auth-btn {
+    width: 100%;
+    padding: 10px;
+    background: red;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    background: #ff3333;
+}
+
+/* Switch link */
+.switch-link {
+    text-align: center;
+    margin-top: 15px;
+    color: #ccc;
+}
+
+.switch-link a {
+    color: red;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.switch-link a:hover {
+    text-decoration: underline;
+}
+
+

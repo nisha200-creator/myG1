@@ -23,18 +23,37 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-gb-(ain++j*-8muz4^97c!t4zs&chxmbo_pb+(ylw!sl@q_v9p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
 ALLOWED_HOSTS = [
-"gln.online",
-"www.gln.online",
-"15.134.31.201"
-]
-CSRF_TRUSTED_ORIGINS = [
-"https://gln.online",
-"https://www.gln.online",
+    # "g1n.online",
+    # "www.g1n.online",
+    # "15.134.31.201",
+
+    "127.0.0.1",
+    "localhost",
+    "g1n.online",
+    "www.g1n.online",
+    "15.134.31.201",
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://g1n.online",
+    "https://www.g1n.online",
+    "http://g1n.online",
+    "http://www.g1n.online",
+]
+
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -108,7 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -129,20 +147,22 @@ USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'email-smtp.ap-south-1.amazonaws.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'AKIA26P713BVAFBMSZPT'
-EMAIL_HOST_PASSWORD = 'BBbCBzxW5HqsbUhT9yy19ThcOzIutftNkIXDmF9X3vji'
-DEFAULT_FROM_EMAIL = 'no-reply@gin.online'
+EMAIL_HOST_USER = 'nisha70016@gmail.com'
+EMAIL_HOST_PASSWORD = 'hurmyzkiyqqojthp'
+DEFAULT_FROM_EMAIL = 'nisha70016@gmail.com'
+
 

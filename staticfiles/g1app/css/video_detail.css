@@ -1,0 +1,52 @@
+.video-detail-page {
+    background: #0e0e13;
+    min-height: 100vh;
+    padding: 40px 60px;
+    color: #fff;
+}
+
+.video-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.back-link {
+    color: #ffffffc9;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    color: #fff;
+}
+
+.g1n-logo {
+    height: 40px;
+    opacity: 0.85;
+}
+
+.video-wrapper {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.video-player {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.video-detail-title {
+    margin-top: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+
+

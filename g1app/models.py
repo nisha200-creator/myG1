@@ -20,13 +20,12 @@ class UserTable(models.Model):
 # PASSWORD RESET OTP (CORRECT ONE)
 # ============================
 
-class PasswordResetOTP(models.Model):
-    user = models.ForeignKey(UserTable, on_delete=models.CASCADE)
-    otp = models.CharField(max_length=6)
-    created_at = models.DateTimeField(default=timezone.now)
+from django.contrib.auth.models import User
 
-    def __str__(self):
-        return f"{self.user.email} - {self.otp}"
+class PasswordResetOTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 # ============================

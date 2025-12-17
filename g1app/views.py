@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
+                                                                                                                                                                                                
+import random
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.utils.crypto import get_random_string
-from django.utils import timezone
-from datetime import timedelta
-from .models import UserTable, Article, Video, Race, RaceResult, PasswordResetOTP
-import random
+from django.conf import settings
+from django.contrib.auth.hashers import make_password
+
+
+from .models import User, Article, Video, Race, RaceResult, PasswordResetOTP
+from django.contrib.auth.models import User
 from django.conf import settings
 
 
@@ -58,11 +63,18 @@ def Register_page(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        users[email] = {
-            'name': fullname,
-            'password': password
-        }
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already registered")
+            return redirect('Register_page')
 
+        User.objects.create_user(
+            username=email,        # email used as username
+            email=email,
+            password=password,
+            first_name=fullname
+        )
+
+        messages.success(request, "Registration successful. Please sign in.")
         return redirect('Register_signIn')
 
     return render(request, 'g1app/register.html')
@@ -73,20 +85,21 @@ def Register_signIn(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        try:
-            user = UserTable.objects.get(email=email)
-        except UserTable.DoesNotExist:
-            return render(request, 'g1app/signin.html', {'error': "Invalid email or password"})
+        user = authenticate(
+            request,
+            username=email,    # MUST match register username
+            password=password
+        )
 
-        if user.password != password:
-            return render(request, 'g1app/signin.html', {'error': "Invalid email or password"})
-
-        # Login success
-        request.session['user_email'] = user.email
-        request.session['user_name'] = user.name
-        return redirect('index')
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            messages.error(request, "Invalid email or password")
 
     return render(request, 'g1app/signin.html')
+
+
 
 
 
@@ -107,27 +120,23 @@ def forgot_password(request):
         email = request.POST.get("email")
 
         try:
-            user = UserTable.objects.get(email=email)
-        except UserTable.DoesNotExist:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
             messages.error(request, "Email not found")
-            return redirect('forgot_password')
+            return redirect("forgot_password")
 
         otp = str(random.randint(100000, 999999))
         PasswordResetOTP.objects.create(user=user, otp=otp)
 
-        print("OTP FUNCTION REACHED:", otp)   # <-- ADD THIS
-
         send_mail(
             "Your OTP for Password Reset",
             f"Your OTP is: {otp}",
-            settings.EMAIL_HOST_USER,
+            settings.DEFAULT_FROM_EMAIL,
             [user.email],
             fail_silently=False,
         )
 
-        # Store user ID in session
         request.session["reset_user_id"] = user.id
-
         return redirect("verify_otp")
 
     return render(request, "g1app/forgot_password.html")
@@ -136,14 +145,13 @@ def forgot_password(request):
 
 
 
+
 def verify_otp(request):
     user_id = request.session.get("reset_user_id")
-
     if not user_id:
         return redirect("forgot_password")
 
-    # Get user
-    user = UserTable.objects.get(id=user_id)
+    user = User.objects.get(id=user_id)   # ✅ FIXED
 
     if request.method == "POST":
         entered_otp = request.POST.get("otp")
@@ -161,14 +169,15 @@ def verify_otp(request):
 
     return render(request, "g1app/verify_otp.html")
 
+
+
+
 def reset_password(request):
     user_id = request.session.get("reset_user_id")
-
     if not user_id:
         return redirect("forgot_password")
 
-    # Get user
-    user = UserTable.objects.get(id=user_id)
+    user = User.objects.get(id=user_id)   # ✅ FIXED
 
     if request.method == "POST":
         new_password = request.POST.get("password")
@@ -178,14 +187,14 @@ def reset_password(request):
             messages.error(request, "Passwords do not match")
             return redirect("reset_password")
 
-        # Update password
-        user.password = new_password
+        user.password = make_password(new_password)
         user.save()
 
         messages.success(request, "Password reset successfully. Please login.")
         return redirect("Register_signIn")
 
     return render(request, "g1app/reset_password.html")
+
 
 
 

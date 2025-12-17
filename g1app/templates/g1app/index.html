@@ -230,23 +230,7 @@
 
 
 
-        /* display mode */
-
-        :root.light-mode {
-            --bg: #c4c4c4;
-            --text: #000000;
-        }
-
-        :root.dark-mode {
-            --bg: #0d0d14;
-            --text: #ffffff;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            transition: background 0.3s ease, color 0.3s ease;
-        }
+  
     </style>
 </head>
 
@@ -276,15 +260,16 @@
                 <li><a href="#">Hospitality</a></li>
                 <li><a href="#">Experiences</a></li>
 
-                {% if request.session.user_email %}
+                {% if request.user.is_authenticated %}
 
                 <!-- USER MENU -->
                 <li class="user-menu">
                     <div class="user-info" id="userToggle">
                         <img src="{% static 'g1app/images/logo.png' %}" class="user-avatar" alt="User">
-                        <span class="user-name">{{ request.session.user_name }}</span>
+                        <span class="user-name">
+                            {{ request.user.first_name|default:request.user.username }}
+                        </span>
 
-                        <!-- ⬇ Arrow icon -->
                         <span id="arrowBtn" class="arrow-icon">&#9662;</span>
                     </div>
 
@@ -297,13 +282,23 @@
                 </li>
 
                 {% else %}
-                <li><a href="{% url 'Register_signIn' %}">Sign In</a></li>
+
+                <li>
+                    <a href="{% url 'Register_signIn' %}">Sign In</a>
+                </li>
+
                 {% endif %}
 
-                <li><a href="{% url 'subscribe_page' %}" class="subscribe-btn">Subscribe</a></li>
-
+                <li>
+                    <a href="{% url 'subscribe_page' %}" class="subscribe-btn">Subscribe</a>
+                </li>
             </ul>
+
+
+
         </nav>
+
+
     </header>
     <!-- countdown-bar -->
 

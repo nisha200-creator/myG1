@@ -100,10 +100,10 @@
         {% endfor %}
     {% endif %}
 
-    <form method="POST">
+    <form method="POST" action="{% url 'verify_otp' %}">
         {% csrf_token %}
         <input type="text" name="otp" placeholder="Enter OTP" required>
-        <button type="submit">Verify</button>
+        <button type="submit">Verify OTP</button>
     </form>
 
 </div>
