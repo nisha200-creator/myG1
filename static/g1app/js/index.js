@@ -1,5 +1,11 @@
 // scripts.js
 
+
+
+
+
+// carousel js
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- Carousel Scrolling Functionality ---
     const videoCarousel = document.getElementById('videoCarousel');
@@ -181,6 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLoadMoreButton(filteredArticles.length);
     };
 
+
+
+
     // Function to handle the Load More button click
     const loadNextBatch = () => {
         const articlesToLoad = Array.from(newsArticles).filter(article =>
@@ -200,6 +209,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateLoadMoreButton(articlesToLoad.length);
     };
+
+
+
 
     // Function to show/hide the Load More button
     const updateLoadMoreButton = (totalFilteredCount) => {

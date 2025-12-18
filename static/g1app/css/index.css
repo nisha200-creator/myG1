@@ -138,7 +138,11 @@
 
 @media (min-width: 1600px) {
     .hero-section {
-        max-width: 1600px;
+        max-width:1600px ;
+        
+    }
+    .hero-image {
+        width: 100%;
     }
 }
 @media (max-width: 1200px) {
@@ -186,6 +190,11 @@
     .sidebar-item {
         padding: 10px;
     }
+    .sidebar-item p {
+        font-size: 14px;
+    }
+
+    
 }
 @media (max-width: 480px) {
     .image-overlay {
@@ -198,14 +207,24 @@
 
     .item-thumbnail {
         width: 60px;
-        height: 60px;
-        min-width: 60px;
+        height: 80px;
+        min-width: 143px;
     }
 
     .article-time {
         font-size: 0.7rem;
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -409,10 +428,22 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /* Editor's Picks Section Styling */
 .editors-picks-section {
     padding: 40px 20px;
-    max-width: 1400px;
+    max-width: 1590px;
     margin: 0 auto;
 }
 
@@ -532,13 +563,140 @@
 }
 
 
+
+
+
+
+/* RESPONSIVE FOR EDITOR  */
+
+
+
+
+/* @media (min-width: 1600px) {
+    .editors-picks-section {
+        max-width: 1600px;
+    }
+} */
+@media (max-width: 1200px) {
+    .card-content h3 {
+        font-size: 28px;
+    }
+
+    .main-card {
+        width: auto;
+        height: auto;
+    }
+}
+@media (max-width: 1024px) {
+    .editors-picks-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-rows: auto;
+    }
+
+    .editor-pick-card.main-card {
+        grid-column: span 2;
+        grid-row: span 2;
+        height: auto;
+    }
+
+    .card-image,
+    .card-image-small,
+    .card-image-wide {
+        height: 220px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .editors-picks-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px;
+    }
+    
+
+    .editor-pick-card,
+    .editor-pick-card.main-card {
+        grid-column: auto !important;
+        grid-row: auto !important;
+
+        width: 100% !important;
+        height: auto !important;
+    }
+
+
+
+    .editor-pick-card .card-image,
+    .editor-pick-card .card-image-small,
+    .editor-pick-card .card-image-wide {
+        height: 180px;
+        position: relative;
+    }
+
+    .editor-pick-card.main-card {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .card-content h3 {
+        font-size: 22px;
+    }
+
+    .card-image,
+    .card-image-small,
+    .card-image-wide {
+        height: 200px;
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .editor-pick-card .card-image,
+    .editor-pick-card .card-image-small,
+    .editor-pick-card .card-image-wide {
+        height: 285px;
+        object-fit: cover;
+    }
+
+    .card-content h3 {
+        font-size: 18px;
+    }
+
+    .card-content p {
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* drivers and team */
 
-
-/* .red-bar {
-    height: 10px;
-    background-color: #e60000; 
-} */
  .india-flag-bar {
     height: 10px;
 background: linear-gradient(
@@ -564,42 +722,27 @@ h1 {
     margin-top: 0;
     margin-bottom: 30px;
     letter-spacing: 5px;
-    /* Animation for the title */
     animation: slide-in-right 0.8s ease-out;
 }
-
-/* --- Keyframes for Modern Animation --- */
-
-/* Slide title in from the left/right */
-@keyframes slide-in-right {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+/* Tricolour gradient only for 2025 */
+.year-2025 {
+    background: linear-gradient(
+        90deg,
+        #FF9933,   /* Saffron */
+        #FFFFFF,   /* White */
+        #138808    /* Green */
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* Card fade and slide up on section load */
-@keyframes fade-in-up {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 
 /* --- Toggle Navigation Styling --- */
 .standings-toggle {
     display: flex;
     gap: 10px;
     margin-bottom: 40px;
-    border-bottom: 2px solid #333; /* Separator line */
+    border-bottom: 2px solid #333; 
     padding-bottom: 5px;
     width: fit-content;
 }
@@ -613,7 +756,7 @@ h1 {
     padding: 5px 0;
     cursor: pointer;
     position: relative;
-    transition: color 0.3s ease-in-out; /* Smooth color change */
+    transition: color 0.3s ease-in-out; 
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -631,14 +774,14 @@ h1 {
     position: absolute;
     bottom: -7px; 
     left: 0;
-    width: 0; /* Starts at 0 width */
+    width: 0; 
     height: 2px;
-    background-color: #e60000; /* Active indicator color */
-    transition: width 0.3s ease-out; /* Smooth width transition for the slide effect */
+    background-color: #e60000; 
+    transition: width 0.3s ease-out; 
 }
 
 .toggle-btn.active::after {
-    width: 100%; /* Expands to full width when active */
+    width: 100%; 
 }
 
 /* --- Standings Grid Styling --- */
@@ -653,31 +796,29 @@ h1 {
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
     opacity: 1;
     transform: translateY(0);
-    /* Set a reasonable max-height for smooth transition */
     max-height: 1000px; 
-    overflow: hidden; /* Hide overflowing content during transition */
+    overflow: hidden; 
 }
 
 .standings-section.hidden {
     opacity: 0;
     transform: translateY(20px);
-    max-height: 0; /* Collapse height when hidden */
+    max-height: 0; 
     padding: 0;
     margin: 0;
 }
 
 .standings-card {
     position: relative;
-    border-radius: 12px; /* Slightly larger border-radius for modern look */
+    border-radius: 12px; 
     overflow: hidden;
     padding: 20px;
     height: 400px; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
     cursor: pointer;
-    /* Apply initial stagger animation using :nth-child */
     animation: fade-in-up 0.8s ease-out; 
 }
 
@@ -685,21 +826,18 @@ h1 {
 .standings-grid .standings-card:nth-child(1) { animation-delay: 0.1s; }
 .standings-grid .standings-card:nth-child(2) { animation-delay: 0.2s; }
 .standings-grid .standings-card:nth-child(3) { animation-delay: 0.3s; }
-/* Add more :nth-child selectors if you have more cards */
 
 /* Card Hover Effect */
 .standings-card:hover {
-    transform: translateY(-8px) scale(1.02); /* Lift and slightly scale */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
-    z-index: 10; /* Ensure the hovered card is on top */
+    transform: translateY(-8px) scale(1.02); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
+    z-index: 10; 
 }
 
-/* Background Colors - No change, but good to keep */
 .blue-bg { background: linear-gradient(135deg, #0d1a3a, #1a3360); }
 .orange-bg { background: linear-gradient(135deg, #ff8c00, #e65c00); }
 .green-bg { background: linear-gradient(135deg, #004d40, #008060); }
 
-/* Position Styling - No change, but good to keep */
 .position {
     font-size: 3em;
     font-weight: 900;
@@ -711,11 +849,9 @@ h1 {
 }
 
 .first-place {
-    /* Optional: Add a subtle animation/glow for the 1st place card */
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-/* --- Image & Content Styling - Add transition for images --- */
 .driver-img, .car-img {
     position: absolute;
     bottom: 0;
@@ -727,12 +863,11 @@ h1 {
     z-index: 1;
     opacity: 0.9;
     transform: translateX(10%); 
-    /* Add transition for a subtle effect on hover */
     transition: transform 0.5s ease;
 }
 
 .standings-card:hover .driver-img {
-    transform: translateX(0); /* Slide driver image slightly back on hover */
+    transform: translateX(0); 
 }
 
 .info {
@@ -743,7 +878,7 @@ h1 {
 }
 
 .standings-card:hover .info {
-    transform: translateY(-5px); /* Lift text slightly on hover */
+    transform: translateY(-5px); 
 }
 
 
@@ -805,3 +940,127 @@ h1 {
     color: rgba(255, 255, 255, 0.8);
 }
 
+
+
+/* --- Keyframes for Modern Animation --- */
+
+/* Slide title in from the left/right */
+@keyframes slide-in-right {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Card fade and slide up on section load */
+@keyframes fade-in-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* RESPOMSIVE STYLE FOR DRIVER AND TEAM TOGGLE */
+
+
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1600px;
+    }
+}
+@media (max-width: 1200px) {
+    .standings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    h1 {
+        font-size: 2.5em;
+        letter-spacing: 4px;
+    }
+}
+@media (max-width: 1024px) {
+    .standings-card {
+        height: auto;
+        min-height: 360px;
+    }
+
+    .driver-img,
+    .car-img {
+        height: 70%;
+    }
+
+    .name {
+        font-size: 1.6em;
+    }
+
+    .points {
+        font-size: 2.5em;
+    }
+}
+@media (max-width: 768px) {
+    .standings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .standings-toggle {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+        letter-spacing: 3px;
+    }
+
+    .standings-card {
+        padding: 16px;
+    }
+
+    .position {
+        font-size: 2.5em;
+    }
+
+    .driver-img,
+    .car-img {
+        height: 60%;
+        transform: translateX(0);
+    }
+}
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6em;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+
+    .name {
+        font-size: 1.4em;
+        margin-top: 70px;
+    }
+
+    .team,
+    .drivers {
+        font-size: 0.95em;
+    }
+
+    .points {
+        font-size: 2em;
+    }
+
+    .standings-card {
+        padding: 14px;
+    }
+    .standings-section {
+    
+    max-height: 1122px;
+}
+}

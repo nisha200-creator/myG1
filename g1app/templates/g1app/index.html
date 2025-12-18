@@ -57,13 +57,15 @@
             transform: rotate(180deg);
         }
 
+
+
         /* DROPDOWN */
         .dropdown-menu {
             position: absolute;
             top: 40px;
             right: 0;
             width: 160px;
-            background: #ffffff;
+            background: black;
             border-radius: 10px;
             padding: 0;
             margin: 0;
@@ -94,7 +96,7 @@
             display: block;
             padding: 12px 15px;
             font-size: 14px;
-            color: #333;
+            /* color: #333; */
             text-decoration: none;
             transition: 0.2s;
         }
@@ -103,6 +105,65 @@
             background: red;
             color: #fff;
         }
+
+
+        /* Allow dropdown to overflow header */
+        .main-header {
+            overflow: visible;
+            /* overflow-x: hidden; */
+        }
+
+        .user-menu {
+            position: relative;
+            z-index: 2000;
+        }
+
+        .dropdown-menu {
+            z-index: 3000;
+        }
+
+        /*RESPONSIVE  STYLE FOR DROPDOWN  */
+
+        @media (max-width: 1024px) {
+            .dropdown-menu {
+                right: 0;
+                left: auto;
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                top: 45px;
+                right: 50%;
+                transform: translateX(50%);
+                width: 90%;
+                max-width: 280px;
+                border-radius: 12px;
+            }
+
+            .dropdown-menu a {
+                padding: 6px 18px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dropdown-menu {
+                width: calc(61vw - 30px);
+                max-width: none;
+                right: 0px;
+                left: 148px;
+                transform: none;
+                top: -53px;
+                background-color: #000;
+                color: white !important;
+            }
+        }
+
+
+
+
 
         /* COOKIES STYLE */
 
@@ -227,24 +288,23 @@
                 transform: translateY(0);
             }
         }
-
-
-
-  
     </style>
 </head>
 
 <body>
     <header class="main-header">
-       
-
-
         <div class="logo">
             <a href="{% url 'index' %}">
                 <img src="{% static '/g1app/images/logo.png' %} " alt="F1 Logo" class="logo-img">
 
             </a>
         </div>
+
+        <button class="hamburger rotate" id="hamburgerBtn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
         <nav class="primary-nav">
             <ul>
@@ -297,6 +357,7 @@
                 </li>
             </ul>
         </nav>
+        <!-- </div> -->
     </header>
 
 
@@ -418,7 +479,10 @@
     </header>
 
     <div class="container">
-        <h1>2025 SEASON</h1>
+        <h1>
+            <span class="year-2025">2025</span> SEASON
+        </h1>
+
 
         <nav class="standings-toggle">
             <button class="toggle-btn active" data-target="drivers-standings">DRIVERS</button>
@@ -564,14 +628,14 @@
                     <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
                         class="store-badge">
                 </a>
-                <a href="#" class="store-link">
+                <!-- <a href="#" class="store-link">
                     <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
                         class="store-badge">
                 </a>
                 <a href="#" class="store-link">
                     <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
                         class="store-badge">
-                </a>
+                </a> -->
             </div>
         </div>
 
@@ -601,7 +665,7 @@
 
 
 
-           
+
 
 
 
@@ -612,91 +676,51 @@
         </div>
     </footer>
     <script src="{% static 'g1app/js/index.js' %}" defer></script>
-
-    <!-- js for display mode -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", function () {
+            const hamburger = document.getElementById("hamburgerBtn");
+            const primaryNav = document.querySelector(".primary-nav");
+            const secondaryNav = document.querySelector(".secondary-nav");
 
-            const menu = document.querySelector(".display-mode-menu");
-            const button = document.querySelector(".display-mode-selector");
-            const options = document.querySelectorAll(".mode-option");
+            let lastScroll = window.scrollY;
 
-            // Toggle dropdown
-            button.addEventListener("click", () => {
-                menu.classList.toggle("hidden");
+            // HAMBURGER CLICK
+            hamburger.addEventListener("click", function () {
+                hamburger.classList.toggle("active");
+                primaryNav.classList.toggle("show-menu");
+                secondaryNav.classList.toggle("show-menu");
             });
 
-            // Load saved theme
-            let saved = localStorage.getItem("theme-mode") || "system";
-            applyTheme(saved);
-            setActive(saved);
+            // SCROLL UP → CLOSE MENU
+            window.addEventListener("scroll", function () {
+                const currentScroll = window.scrollY;
 
-            options.forEach(option => {
-                option.addEventListener("click", () => {
-                    let mode = option.dataset.mode;
-                    localStorage.setItem("theme-mode", mode);
-                    applyTheme(mode);
-                    setActive(mode);
-                    menu.classList.add("hidden");
-                });
-            });
+                if (
+                    currentScroll < lastScroll &&
+                    hamburger.classList.contains("active")
+                ) {
+                    hamburger.classList.remove("active");
 
-            function applyTheme(mode) {
+                    primaryNav.classList.remove("show-menu");
+                    secondaryNav.classList.remove("show-menu");
 
-                document.documentElement.classList.remove("light-mode", "dark-mode");
+                    // trigger vanish animation
+                    primaryNav.classList.add("closing");
+                    secondaryNav.classList.add("closing");
 
-                if (mode === "light") {
-                    document.documentElement.classList.add("light-mode");
+                    setTimeout(() => {
+                        primaryNav.classList.remove("closing");
+                        secondaryNav.classList.remove("closing");
+                    }, 300);
                 }
-                else if (mode === "dark") {
-                    document.documentElement.classList.add("dark-mode");
-                }
-                else {
-                    // SYSTEM
-                    let systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-                    if (systemDark) {
-                        document.documentElement.classList.add("dark-mode");
-                    } else {
-                        document.documentElement.classList.add("light-mode");
-                    }
-                }
-            }
 
-            function setActive(mode) {
-                options.forEach(o => o.classList.remove("active"));
-                document.querySelector(`[data-mode="${mode}"]`).classList.add("active");
-            }
-
-        });
-
-
-        // nav page sign in drop down
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const toggle = document.getElementById('userToggle');
-            const menu = document.getElementById('dropdownMenu');
-            const arrow = document.getElementById('arrowBtn');
-
-            toggle.addEventListener('click', function (e) {
-                e.stopPropagation();              // avoid body click hiding immediately
-                menu.classList.toggle('dropdown-show');
-                arrow.classList.toggle('arrow-rotate');
-                // update aria
-                const expanded = toggle.getAttribute('aria-expanded') === 'true';
-                toggle.setAttribute('aria-expanded', String(!expanded));
-            });
-
-            // click outside to close
-            document.addEventListener('click', function () {
-                if (menu.classList.contains('dropdown-show')) {
-                    menu.classList.remove('dropdown-show');
-                    arrow.classList.remove('arrow-rotate');
-                    toggle.setAttribute('aria-expanded', 'false');
-                }
+                lastScroll = currentScroll;
             });
         });
     </script>
-    <script src="{% static 'g1app/js/index.js' %}" defer></script>
+
+
+
 </body>
 
 </html>

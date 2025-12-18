@@ -1,10 +1,10 @@
 /* Variables for easy color adjustments */
 :root {
-    --f1-dark-bg: #14141d; /* Very Dark Purple/Grey */
-    --f1-text-color: #ffffff;
-    --f1-red: #e10600; /* Signature F1 Red */
-    --f1-light-grey: #a0a0a0;
-    --f1-nav-bg: #1f1f27; /* Slightly lighter background for the nav */
+    --f1-dark-bg: #14141d; /* Very Dark Purple/Grey */ 
+    --f1-text-color: #ffffff; 
+    --f1-red: #e10600; /* Signature F1 Red */ 
+    --f1-light-grey: #a0a0a0; 
+    --f1-nav-bg: #1f1f27; /* Slightly lighter background for the nav */ 
     --f1-countdown-bg: #1f1f27;
 }
 
@@ -19,6 +19,7 @@ body {
     background-color: var(--f1-dark-bg);
     color: var(--f1-text-color);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 a {
@@ -121,6 +122,9 @@ ul {
     display: block;
 }
 
+
+
+
 /* RESPONSIVE STYLE FOR NAVBAR */
 
 @media (min-width: 1600px) {
@@ -201,11 +205,157 @@ ul {
 }
 
 
+/* hamburger */
+
+
+/* =========================
+   MOBILE HAMBURGER (ADD ONLY)
+========================= */
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 24px;
+    position: relative;
+    z-index: 1100;
+}
+
+.hamburger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 10px; }
+.hamburger span:nth-child(3) { top: 20px; }
+
+/* ANIMATION → X */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 10px;
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 10px;
+}
+
+.hamburger.rotate {
+    transition: transform 0.4s ease;
+}
+
+.hamburger.rotate.active {
+    transform: rotate(180deg);
+}
 
 
 
 
-/* If you kept the class as .f1tv, you might need to adjust the selector: */
+
+/* MOBILE MENU */
+@media (max-width: 992px) {
+
+    /* Hamburger */
+    .hamburger {
+        display: block;
+    }
+
+    /* Mobile nav container */
+    .nav-wrapper {
+        position: absolute;
+        top: 83px;
+        left: 0;
+        width: 100%;
+        background: var(--f1-nav-bg);
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .nav-wrapper.open {
+        max-height: 100vh;
+    }
+
+    /* Nav lists */
+    .primary-nav ul,
+    .secondary-nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .secondary-nav {
+        margin-left: 0;
+    }
+
+    /* Hide navs by default */
+    .primary-nav,
+    .secondary-nav {
+        display: none;
+        width: 100%;
+        background: var(--f1-nav-bg);
+    }
+
+    /* Show navs on open */
+    .mobile-open .primary-nav,
+    .mobile-open .secondary-nav,
+    .primary-nav.show-menu,
+    .secondary-nav.show-menu {
+        display: block;
+        animation: slideDown 0.3s ease;
+    }
+}
+
+/* Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* CLOSE animation */
+.primary-nav.closing,
+.secondary-nav.closing {
+    animation: slideUp 0.3s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 /* footer */
@@ -236,10 +386,20 @@ ul {
 
 .app-title {
     font-size: 30px;
-    font-weight: 900; 
+    font-weight: 900;
     letter-spacing: 1px;
     margin: 0;
+
+    background: linear-gradient(
+        90deg,
+        #FF9933,
+        #FFFFFF,
+        #138808
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+
 
 .app-stores {
     display: flex;
