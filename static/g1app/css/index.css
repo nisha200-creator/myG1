@@ -1,90 +1,4 @@
- /* display mode change */
-
-        .display-mode-selector {
-            background: none;
-            border: 2px solid #fff;
-            padding: 8px 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        .display-mode-menu {
-            position: absolute;
-            background: #12121a;
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid #444;
-        }
-
-        .display-mode-menu.hidden {
-            display: none;
-        }
-
-        .mode-option {
-            padding: 6px 0;
-            color: #ccc;
-            cursor: pointer;
-        }
-
-        .mode-option.active::after {
-            content: "•";
-            margin-left: 8px;
-            color: #e10600;
-        }
-
-        /* =============== LIGHT MODE COLORS =============== */
-html.light-mode {
-    background: #ffffff !important;
-    color: #000 !important;
-}
-
-/* section title → black */
-html.light-mode .section-title {
-    color: #000 !important;
-}
-
-/* card-content h3 → white */
-html.light-mode .card-content h3 {
-    color: #ffffff !important;
-}
-
-/* toggle-btn .active → black */
-html.light-mode .toggle-btn.active {
-    color: gray !important;
-}
-
-/* position → white */
-html.light-mode .position {
-    color: #ffffff !important;
-}
-
-/* name → white */
-html.light-mode .name {
-    color: #ffffff !important;
-}
-
-/* points → white */
-html.light-mode .points {
-    color: #ffffff !important;
-}
-
-/* app-title → white */
-html.light-mode .app-title {
-    color: #ffffff !important;
-}
-html.light-mode  p {
-    color: #ffffff !important;
-}
-html.light-mode .scroll-btn {
-    color : black !important
-}
-html.light-mode .view-all  {
-    color : black !important
-}
-        
-
-        
+    
 /* 3. Main Content/Hero Section Styling */
 .hero-section {
     display: grid;
@@ -102,9 +16,11 @@ html.light-mode .view-all  {
 }
 
 .hero-image {
-    width: 100%;
-    height: auto;
+    width: 896px;
+    /* height: auto; */
     display: block;
+    height: 100%;
+    object-fit: cover;
 }
 
 .image-overlay {
@@ -215,6 +131,80 @@ html.light-mode .view-all  {
     opacity: 0.9;
     background-color: transparent; 
     z-index: 5; 
+}
+
+
+/* RESPONSIVE STYLE FOR HERO SECTION */
+
+@media (min-width: 1600px) {
+    .hero-section {
+        max-width: 1600px;
+    }
+}
+@media (max-width: 1200px) {
+    .hero-image {
+        width: 100%;
+    }
+
+    .image-overlay h2 {
+        font-size: 24px;
+    }
+
+    .sidebar-item p {
+        width: auto;
+    }
+}
+@media (max-width: 1024px) {
+    .hero-section {
+        grid-template-columns: 1.5fr 1fr;
+        gap: 12px;
+    }
+
+    .image-overlay h2 {
+        font-size: 22px;
+    }
+}
+@media (max-width: 768px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .hero-main {
+        height: auto;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .hero-sidebar {
+        flex-direction: column;
+    }
+
+    .sidebar-item {
+        padding: 10px;
+    }
+}
+@media (max-width: 480px) {
+    .image-overlay {
+        padding: 20px 15px 15px;
+    }
+
+    .image-overlay h2 {
+        font-size: 18px;
+    }
+
+    .item-thumbnail {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+    }
+
+    .article-time {
+        font-size: 0.7rem;
+    }
 }
 
 
@@ -351,10 +341,74 @@ html.light-mode .view-all  {
     min-height: 40px; 
 }
 
-/* editors pics */
+/* RESPONSIVE STYLE FOR FEATURED VIDEO */
+
+@media (min-width: 1600px) {
+    .featured-video-section {
+        max-width: 1600px;
+    }
+}
+@media (max-width: 1200px) {
+    .section-title {
+        font-size: 28px;
+    }
+
+    .video-card {
+        flex: 0 0 260px;
+    }
+}
+@media (max-width: 1024px) {
+    .featured-video-section {
+        padding: 30px 15px;
+    }
+
+    .section-title {
+        font-size: 26px;
+        letter-spacing: 1.5px;
+    }
+
+    .video-card {
+        flex: 0 0 240px;
+    }
+}
+/* ✅ MOBILE FIX FOR VIDEO SLIDER */
+@media (max-width: 768px) {
+    .video-carousel {
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
+        scroll-snap-type: x mandatory;
+
+        touch-action: pan-x;
+    }
+
+    .video-card {
+        scroll-snap-align: start;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .video-card {
+        flex: 0 0 200px;
+    }
+
+    .video-title {
+        font-size: 13px;
+        min-height: auto;
+    }
+
+    .duration {
+        font-size: 11px;
+    }
+}
 
 
-/* editors picked */
 /* Editor's Picks Section Styling */
 .editors-picks-section {
     padding: 40px 20px;
@@ -431,7 +485,7 @@ html.light-mode .view-all  {
 }
 
 .card-content h3 {
-    font-size: 20px;
+    font-size: 35px;
     line-height: 1.3;
     margin: 0;
 }
@@ -471,7 +525,7 @@ html.light-mode .view-all  {
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    max-height: 400px; 
+    /* max-height: 400px;  */
 }
 .main-card .card-content {
     z-index: 1; 

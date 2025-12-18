@@ -236,6 +236,9 @@
 
 <body>
     <header class="main-header">
+       
+
+
         <div class="logo">
             <a href="{% url 'index' %}">
                 <img src="{% static '/g1app/images/logo.png' %} " alt="F1 Logo" class="logo-img">
@@ -265,7 +268,7 @@
                 <!-- USER MENU -->
                 <li class="user-menu">
                     <div class="user-info" id="userToggle">
-                        <img src="{% static 'g1app/images/logo.png' %}" class="user-avatar" alt="User">
+                        <img src="{% static 'g1app\images\logo.png' %}" class="user-avatar" alt="User">
                         <span class="user-name">
                             {{ request.user.first_name|default:request.user.username }}
                         </span>
@@ -293,13 +296,10 @@
                     <a href="{% url 'subscribe_page' %}" class="subscribe-btn">Subscribe</a>
                 </li>
             </ul>
-
-
-
         </nav>
-
-
     </header>
+
+
     <!-- countdown-bar -->
 
     <main class="hero-section">
@@ -601,22 +601,13 @@
 
 
 
-            <button class="display-mode-selector">
-                Display mode
-                <span class="dropdown-arrow-icon"></span>
-            </button>
-
-            <div class="display-mode-menu hidden">
-                <div class="mode-option" data-mode="system">System</div>
-                <div class="mode-option" data-mode="light">Light mode</div>
-                <div class="mode-option" data-mode="dark">Dark mode</div>
-            </div>
+           
 
 
 
 
             <p class="copyright">
-                © 2003-2025 G1 World Championship Limited
+                © 2003-2025 G1 Championship Limited
             </p>
         </div>
     </footer>

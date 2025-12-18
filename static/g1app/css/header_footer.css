@@ -36,15 +36,26 @@ ul {
 }
 
 /* 1. Header/Navigation Bar Styling */
+/* HEADER BASE */
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 10px 20px;
-    background-color: var(--f1-nav-bg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    height: 83px; 
+    height: 83px;
+
+    background: var(--f1-nav-bg);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+
+    position: relative;
+    overflow: hidden;
+    z-index: 1000;
 }
+
+/* for header nav animation */ .main-header::after { content: ""; position: absolute; inset: 0; background: linear-gradient( 120deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60% ); animation: shine 6s linear infinite; pointer-events: none; /* nav links clickable */ z-index: 0; } .main-header > * { position: relative; z-index: 1; } .hero-section { margin-top: 83px; /* same as header height */ } @keyframes shine { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+
 
 .logo {
     /* Keep existing styles */
@@ -109,6 +120,90 @@ ul {
     margin-right: 2px;
     display: block;
 }
+
+/* RESPONSIVE STYLE FOR NAVBAR */
+
+@media (min-width: 1600px) {
+    .main-header {
+        padding: 10px 60px;
+    }
+}
+@media (max-width: 1200px) {
+    .primary-nav ul,
+    .secondary-nav ul {
+        gap: 14px;
+    }
+
+    .logo-img {
+        height: 80px;
+    }
+}
+@media (max-width: 1024px) {
+    .main-header {
+        padding: 10px 15px;
+    }
+
+    .primary-nav ul,
+    .secondary-nav ul {
+        gap: 12px;
+    }
+
+    .logo-img {
+        height: 70px;
+    }
+}
+@media (max-width: 768px) {
+    .main-header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 12px;
+    }
+
+    .hero-section {
+        margin-top: auto;
+    }
+
+    .logo-img {
+        height: 60px;
+    }
+
+    .primary-nav ul,
+    .secondary-nav ul {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .secondary-nav {
+        margin-left: 0;
+    }
+
+    .subscribe-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+@media (max-width: 480px) {
+    .primary-nav ul,
+    .secondary-nav ul {
+        gap: 8px;
+        font-size: 13px;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    .subscribe-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+
+
+
+
+
 
 /* If you kept the class as .f1tv, you might need to adjust the selector: */
 
@@ -263,5 +358,86 @@ ul {
 }
 
 
+/* RESPONSIVE FOR FOOTER */
+
+@media (min-width: 1600px) {
+    .footer-row {
+        padding: 10px 60px;
+    }
+}
+@media (max-width: 1200px) {
+    .footer-nav ul {
+        gap: 20px;
+    }
+
+    .app-title {
+        font-size: 26px;
+    }
+}
+@media (max-width: 1024px) {
+    .footer-row {
+        flex-wrap: wrap;
+        row-gap: 20px;
+    }
+
+    .footer-nav ul {
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+    .social-links {
+        margin-right: 0;
+    }
+}
+@media (max-width: 768px) {
+    .footer-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-nav ul {
+        justify-content: center;
+        padding-bottom: 15px;
+    }
+
+    .social-links {
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .display-mode-selector {
+        margin: 10px 0;
+    }
+
+    .copyright {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 480px) {
+    .app-title {
+        font-size: 22px;
+    }
+
+    .store-badge {
+        height: 30px;
+    }
+
+    .footer-nav ul {
+        gap: 12px;
+        font-size: 13px;
+    }
+
+    .social-links {
+        gap: 15px;
+        font-size: 16px;
+    }
+
+    .display-mode-selector {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
 
 
