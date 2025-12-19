@@ -1,10 +1,10 @@
 /* Variables for easy color adjustments */
 :root {
-    --f1-dark-bg: #14141d; /* Very Dark Purple/Grey */ 
+    --f1-dark-bg: #0b0b14; 
     --f1-text-color: #ffffff; 
-    --f1-red: #e10600; /* Signature F1 Red */ 
+    --f1-red: #e10600; 
     --f1-light-grey: #a0a0a0; 
-    --f1-nav-bg: #1f1f27; /* Slightly lighter background for the nav */ 
+    --f1-nav-bg: #1f1f27; 
     --f1-countdown-bg: #1f1f27;
 }
 
@@ -12,7 +12,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif; /* Use a web-safe font or Titillium Web/Inter */
+    font-family: Arial, sans-serif; 
 }
 
 body {
@@ -37,6 +37,8 @@ ul {
 }
 
 /* 1. Header/Navigation Bar Styling */
+
+
 /* HEADER BASE */
 .main-header {
     display: flex;
@@ -44,14 +46,15 @@ ul {
     align-items: center;
 
     padding: 10px 20px;
-    height: 83px;
+    height: 48px;
 
     background: var(--f1-nav-bg);
     border-bottom: 1px solid rgba(255,255,255,0.12);
 
-    position: relative;
+    position: fixed;
     overflow: hidden;
     z-index: 1000;
+    width: 100%;
 }
 
 /* for header nav animation */ .main-header::after { content: ""; position: absolute; inset: 0; background: linear-gradient( 120deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60% ); animation: shine 6s linear infinite; pointer-events: none; /* nav links clickable */ z-index: 0; } .main-header > * { position: relative; z-index: 1; } .hero-section { margin-top: 83px; /* same as header height */ } @keyframes shine { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
@@ -93,7 +96,7 @@ ul {
     background-color: var(--f1-red);
     color: var(--f1-text-color);
     border: none;
-    padding: 8px 15px;
+    padding: 4px 8px;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
@@ -103,6 +106,8 @@ ul {
 .subscribe-btn:hover {
     background-color: #ff3333;
 }
+
+
 
 
 /* second logo */
@@ -363,7 +368,7 @@ ul {
 
 
 .f1-footer {
-    background-color: var(--f1-dark-bg); 
+    background-color: var(--f1-nav-bg); 
     padding: 20px 0;
     font-size: 14px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);

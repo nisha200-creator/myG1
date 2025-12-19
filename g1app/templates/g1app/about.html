@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1 TEAMS 2025</title>
+    <link rel="stylesheet" href="{% static 'g1app/css/about.css' %}">
     <link rel="stylesheet" href="{% static 'g1app/css/Teams.css' %}">
     <link rel="stylesheet" href="{% static 'g1app/css/header_footer.css' %}">
 
@@ -14,63 +15,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         .team-card {
-    position: relative;
-    padding: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    height: 534px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 310px;
-}
+            position: relative;
+            padding: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 534px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 310px;
+        }
 
-.teams-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* <-- FIX */
-    gap: 20px;
-}
-
-
-/* HERO WRAPPER */
-.schedule-hero {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-}
-
-/* HERO IMAGE */
-.schedule-hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(60%);
-}
-
-/* TEXT OVERLAY */
-.schedule-hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #fff;
-    text-align: center;
-    letter-spacing: 2px;
-    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
-}
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* <-- FIX */
+            gap: 20px;
+        }
 
 
-   .user-menu {
+        /* HERO WRAPPER */
+        .schedule-hero {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        /* HERO IMAGE */
+        .schedule-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(60%);
+        }
+
+        /* TEXT OVERLAY */
+        .schedule-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+        }
+
+
+        .user-menu {
             position: relative;
             list-style: none;
         }
@@ -108,8 +110,6 @@
         .arrow-rotate {
             transform: rotate(180deg);
         }
-
-       
     </style>
 </head>
 
@@ -173,15 +173,15 @@
 
     <body>
         <div class="schedule-hero">
-        <img src="{% static 'g1app/images/g1_about.avif' %}" alt="Schedule Hero" class="schedule-hero-img">
+            <img src="{% static 'g1app/images/g1_about.avif' %}" alt="Schedule Hero" class="schedule-hero-img">
 
-        <div class="schedule-hero-overlay">
-            <h1 class="hero-title">G1 TEAMS 2025</h1>
+            <div class="schedule-hero-overlay">
+                <h1 class="hero-title">G1 TEAMS 2025</h1>
+            </div>
         </div>
-    </div>
         <div class="team-container">
             <!-- <h1 class="page-title">G1 TEAMS 2025</h1> -->
-            <p class="subtitle">Find the current G1 teams for the 2025 season</p>
+            <!-- <p class="subtitle">Find the current G1 teams for the 2025 season</p> -->
 
             <div class="teams-grid" id="teams-grid">
 
@@ -192,8 +192,10 @@
                             <img src="{% static '/g1app/images/gokart.png' %}" alt="Ferrari Team Logo" class="logo-img">
                         </div>
                     </div>
-                    <div class="drivers"><span class="driver-tag">Founder</span><span class="driver-tag">Chairman & CEO</span></div>
-                    <img src="{% static '/g1app/images/Gemini_johnSir.png' %}" alt="McLaren 2025 Car" class="car-image mclaren-car">
+                    <div class="drivers"><span class="driver-tag">Founder</span><span class="driver-tag">Chairman &
+                            CEO</span></div>
+                    <img src="{% static '/g1app/images/Kimi_Antonelli.webp' %}" alt="McLaren 2025 Car"
+                        class="car-image mclaren-car">
                 </div>
 
                 <div class="team-card mercedes-bg">
@@ -223,47 +225,114 @@
         </div>
 
 
-         <footer class="f1-footer">
-        <div class="footer-row footer-app-banner">
-            <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
-            <div class="app-stores">
-                <a href="#" class="store-link">
-                    <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
-                        class="store-badge">
-                </a>
-                <a href="#" class="store-link">
-                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
-                        class="store-badge">
-                </a>
-                <a href="#" class="store-link">
-                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
-                        class="store-badge">
-                </a>
-                <a href="#" class="store-link">
-                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
-                        class="store-badge">
-                </a>
+
+
+
+        <!-- photo section -->
+
+        <section class="spotlight">
+            <h2>Spotlight Photos</h2>
+
+            <div class="photo-grid">
+
+                <div class="photo-card">
+                    <img src="{% static '/g1app/images/demo_img1.jpg' %}" alt="Race car">
+                    <div class="overlay">
+                        <p>Race winner celebration</p>
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="{% static '/g1app/images/demo_img1.jpg' %}" alt="Driver win">
+                    <div class="overlay">
+                        <p>Driver victory moment</p>
+                    </div>
+                </div>
+
+                <div class="photo-card">
+                    <img src="{% static '/g1app/images/demo_img1.jpg' %}" alt="Max Verstappen">
+                    <div class="overlay">
+                        <p>Mar 2, 2024 – Max Verstappen wins</p>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="{% static '/g1app/images/demo_img1.jpg' %}" alt="Max Verstappen">
+                    <div class="overlay">
+                        <p>Mar 2, 2024 – Max Verstappen wins</p>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="{% static '/g1app/images/demo_img1.jpg' %}" alt="Max Verstappen">
+                    <div class="overlay">
+                        <p>Mar 2, 2024 – Max Verstappen wins</p>
+                    </div>
+                </div>
+
+
+                <div class="photo-card">
+                    <img src="{% static '/g1app/images/demo_img1.jpg' %}" alt="Max Verstappen">
+                    <div class="overlay">
+                        <p>Mar 2, 2024 – Max Verstappen wins</p>
+                    </div>
+                </div>
+
             </div>
+        </section>
+
+
+        <div class="image-modal" id="imageModal">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" src="">
         </div>
 
-        <div class="footer-row footer-main-nav">
-            <nav class="footer-nav">
-                <ul>
-                    <li><a href="{% url 'schedule' %}">Schedule</a></li>
-                    <li><a href="{% url 'race_results' %}">Results</a></li>
-                    <li><a href="{% url 'news' %}">News</a></li>
-                    <li><a href="#">Drivers</a></li>
-                    <li><a href="{% url 'teams' %}">Teams</a></li>
-                    <li><a href="#">Cookie Preferences</a></li>
-                </ul>
-            </nav>
-            <div class="f1-red-line">
-                <span class="f1-logo-mini">G1</span>
-            </div>
-        </div>
 
-        <div class="footer-row footer-bottom-bar">
-            <!-- <div class="social-links">
+
+
+
+
+
+
+        <footer class="f1-footer">
+            <div class="footer-row footer-app-banner">
+                <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
+                <div class="app-stores">
+                    <a href="#" class="store-link">
+                        <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
+                            class="store-badge">
+                    </a>
+                    <a href="#" class="store-link">
+                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                            class="store-badge">
+                    </a>
+                    <a href="#" class="store-link">
+                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                            class="store-badge">
+                    </a>
+                    <a href="#" class="store-link">
+                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                            class="store-badge">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-row footer-main-nav">
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                        <li><a href="{% url 'race_results' %}">Results</a></li>
+                        <li><a href="{% url 'news' %}">News</a></li>
+                        <li><a href="#">Drivers</a></li>
+                        <li><a href="{% url 'teams' %}">Teams</a></li>
+                        <li><a href="#">Cookie Preferences</a></li>
+                    </ul>
+                </nav>
+                <div class="f1-red-line">
+                    <span class="f1-logo-mini">G1</span>
+                </div>
+            </div>
+
+            <div class="footer-row footer-bottom-bar">
+                <!-- <div class="social-links">
                     <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
                     <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -272,25 +341,58 @@
 
 
 
-            <button class="display-mode-selector">
-                Display mode
-                <span class="dropdown-arrow-icon"></span>
-            </button>
+                <button class="display-mode-selector">
+                    Display mode
+                    <span class="dropdown-arrow-icon"></span>
+                </button>
 
-            <div class="display-mode-menu hidden">
-                <div class="mode-option" data-mode="system">System</div>
-                <div class="mode-option" data-mode="light">Light mode</div>
-                <div class="mode-option" data-mode="dark">Dark mode</div>
+                <div class="display-mode-menu hidden">
+                    <div class="mode-option" data-mode="system">System</div>
+                    <div class="mode-option" data-mode="light">Light mode</div>
+                    <div class="mode-option" data-mode="dark">Dark mode</div>
+                </div>
+
+
+
+
+                <p class="copyright">
+                    © 2003-2025 G1 World Championship Limited
+                </p>
             </div>
+        </footer>
+
+        <!-- PHOTO SECTION JS -->
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+
+                document.querySelectorAll('.photo-card img').forEach(img => {
+                    img.addEventListener('click', function () {
+                        const modal = document.getElementById('imageModal');
+                        const modalImg = document.getElementById('modalImage');
+
+                        modal.style.display = 'flex';
+                        modalImg.src = this.src;
+                    });
+                });
+
+                document.querySelector('.modal-close').onclick = function () {
+                    document.getElementById('imageModal').style.display = 'none';
+                };
+
+                document.getElementById('imageModal').onclick = function () {
+                    this.style.display = 'none';
+                };
+
+            });
+        </script>
+
+        <!-- VIDEO SECTION JS -->
 
 
 
 
-            <p class="copyright">
-                © 2003-2025 G1 World Championship Limited
-            </p>
-        </div>
-    </footer>
+
 
     </body>
 

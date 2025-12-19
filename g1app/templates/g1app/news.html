@@ -242,51 +242,53 @@
 
         <button id="load-more-btn" class="load-more-btn">LOAD MORE</button>
 
+    </div>
 
 
 
 
-        <footer class="f1-footer">
-            <div class="footer-row footer-app-banner">
-                <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
-                <div class="app-stores">
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
-                            class="store-badge">
-                    </a>
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
-                            class="store-badge">
-                    </a>
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
-                            class="store-badge">
-                    </a>
-                    <a href="#" class="store-link">
-                        <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
-                            class="store-badge">
-                    </a>
-                </div>
+
+    <footer class="f1-footer">
+        <div class="footer-row footer-app-banner">
+            <h3 class="app-title">CONNECT THE OFFICIAL G1 </h3>
+            <div class="app-stores">
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/insta.png' %}" alt="Download on the App Store"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
+                <a href="#" class="store-link">
+                    <img src="{% static '/g1app/images/facebook.png' %}" alt="Get it on Google Play"
+                        class="store-badge">
+                </a>
             </div>
+        </div>
 
-            <div class="footer-row footer-main-nav">
-                <nav class="footer-nav">
-                    <ul>
-                        <li><a href="{% url 'schedule' %}">Schedule</a></li>
-                        <li><a href="{% url 'race_results' %}">Results</a></li>
-                        <li><a href="{% url 'news' %}">News</a></li>
-                        <li><a href="#">Drivers</a></li>
-                        <li><a href="{% url 'teams' %}">Teams</a></li>
-                        <li><a href="#">Cookie Preferences</a></li>
-                    </ul>
-                </nav>
-                <div class="f1-red-line">
-                    <span class="f1-logo-mini">G1</span>
-                </div>
+        <div class="footer-row footer-main-nav">
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                    <li><a href="{% url 'race_results' %}">Results</a></li>
+                    <li><a href="{% url 'news' %}">News</a></li>
+                    <li><a href="#">Drivers</a></li>
+                    <li><a href="{% url 'teams' %}">Teams</a></li>
+                    <li><a href="#">Cookie Preferences</a></li>
+                </ul>
+            </nav>
+            <div class="f1-red-line">
+                <span class="f1-logo-mini">G1</span>
             </div>
+        </div>
 
-            <div class="footer-row footer-bottom-bar">
-                <!-- <div class="social-links">
+        <div class="footer-row footer-bottom-bar">
+            <!-- <div class="social-links">
                     <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" title="Twitter/X"><i class="fab fa-twitter"></i></a>
                     <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -295,69 +297,69 @@
 
 
 
-                <button class="display-mode-selector">
-                    Display mode
-                    <span class="dropdown-arrow-icon"></span>
-                </button>
+            <button class="display-mode-selector">
+                Display mode
+                <span class="dropdown-arrow-icon"></span>
+            </button>
 
-                <div class="display-mode-menu hidden">
-                    <div class="mode-option" data-mode="system">System</div>
-                    <div class="mode-option" data-mode="light">Light mode</div>
-                    <div class="mode-option" data-mode="dark">Dark mode</div>
-                </div>
-
-
-
-
-                <p class="copyright">
-                    © 2003-2025 G1 World Championship Limited
-                </p>
+            <div class="display-mode-menu hidden">
+                <div class="mode-option" data-mode="system">System</div>
+                <div class="mode-option" data-mode="light">Light mode</div>
+                <div class="mode-option" data-mode="dark">Dark mode</div>
             </div>
-        </footer>
 
-        <!-- <script src="index.js"></script> -->
-        <script src="{% static 'g1app/js/index.js' %}" defer></script>
 
-        <!-- filter js -->
 
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
 
-                const filterButtons = document.querySelectorAll(".filter-btn");
-                const articles = document.querySelectorAll(".news-article");
-                const emptyMessage = document.getElementById("emptyMessage");
+            <p class="copyright">
+                © 2003-2025 G1 World Championship Limited
+            </p>
+        </div>
+    </footer>
 
-                filterButtons.forEach(button => {
-                    button.addEventListener("click", () => {
+    <!-- <script src="index.js"></script> -->
+    <script src="{% static 'g1app/js/index.js' %}" defer></script>
 
-                        filterButtons.forEach(btn => btn.classList.remove("active"));
-                        button.classList.add("active");
+    <!-- filter js -->
 
-                        const category = button.getAttribute("data-category");
-                        let visibleCount = 0;
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
-                        articles.forEach(article => {
-                            const articleCategory = article.getAttribute("data-category");
+            const filterButtons = document.querySelectorAll(".filter-btn");
+            const articles = document.querySelectorAll(".news-article");
+            const emptyMessage = document.getElementById("emptyMessage");
 
-                            if (category === "all" || articleCategory === category) {
-                                article.style.display = "block";
-                                visibleCount++;
-                            } else {
-                                article.style.display = "none";
-                            }
-                        });
+            filterButtons.forEach(button => {
+                button.addEventListener("click", () => {
 
-                        // Show EMPTY message if nothing is visible
-                        if (visibleCount === 0) {
-                            emptyMessage.style.display = "block";
+                    filterButtons.forEach(btn => btn.classList.remove("active"));
+                    button.classList.add("active");
+
+                    const category = button.getAttribute("data-category");
+                    let visibleCount = 0;
+
+                    articles.forEach(article => {
+                        const articleCategory = article.getAttribute("data-category");
+
+                        if (category === "all" || articleCategory === category) {
+                            article.style.display = "block";
+                            visibleCount++;
                         } else {
-                            emptyMessage.style.display = "none";
+                            article.style.display = "none";
                         }
                     });
-                });
 
+                    // Show EMPTY message if nothing is visible
+                    if (visibleCount === 0) {
+                        emptyMessage.style.display = "block";
+                    } else {
+                        emptyMessage.style.display = "none";
+                    }
+                });
             });
-        </script>
+
+        });
+    </script>
 
 
 

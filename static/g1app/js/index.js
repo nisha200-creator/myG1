@@ -425,3 +425,6 @@ document.getElementById("saveCookieSettings").addEventListener("click", () => {
 
 
 
+
+// EXAMPLE
+

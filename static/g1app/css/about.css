@@ -1,4 +1,3 @@
-/* 3 cards per row */
 .teams-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -6,53 +5,228 @@
     margin-top: 30px;
 }
 
-/* Make cards round */
 .team-card {
-    border-radius: 20px;       /* round corners */
+    position: relative;
     padding: 20px;
-    background-size: cover;
-    background-position: center;
+    border-radius: 8px;
     overflow: hidden;
+    height: 419px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 431px !important;
 }
 
-/* Round the header area */
 .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* Round team logo */
 .team-icon img {
     width: 55px;
     height: 55px;
-    border-radius: 50%;        /* round logo */
+    border-radius: 50%;      
     object-fit: cover;
 }
 
-/* Driver tags */
 .driver-tag {
     background: rgba(255,255,255,0.15);
     padding: 6px 12px;
-    border-radius: 15px;       /* round tags */
+    border-radius: 15px;       
     margin-right: 6px;
 }
 
-/* Car image styling */
 .car-image {
     width: 100%;
     margin-top: 15px;
-    border-radius: 15px;       /* rounded car image */
+    border-radius: 15px;      
 }
 
 
 
 
-/* HERO WRAPPER */
 .schedule-hero {
     position: relative;
     width: 100%;
     height: 800px;
     overflow: hidden;
 }
+
+
+
+
+
+/* photo section  */
+
+
+.spotlight > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+.spotlight {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 90px;
+    background: radial-gradient(circle at center, #0b0b14, #000);
+}
+
+.spotlight::before {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,0.06) 0,
+            rgba(255,255,255,0.06) 1px,
+            transparent 1px,
+            transparent 20px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.06) 0,
+            rgba(255,255,255,0.06) 1px,
+            transparent 1px,
+            transparent 20px
+        );
+    animation: gridSpin 20s linear infinite;
+}
+
+@keyframes gridSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+.spotlight h2 {
+    color: #ffffff;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+
+.photo-card {
+    position: relative;
+    width: calc((100% -0) / 3);;
+    height: 460px;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #000;
+}
+
+
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.08);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75) 0%,
+        rgba(0,0,0,0.3) 40%,
+        rgba(0,0,0,0) 70%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 22px;
+}
+
+.photo-card:hover .overlay {
+    opacity: 1;
+}
+
+.overlay p {
+    color: #ff2a2a;   
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+@media (max-width: 992px) {
+    .photo-grid {
+        flex-direction: column;
+    }
+
+    .photo-card {
+        width: 100%;
+        height: 420px;
+    }
+
+    .spotlight {
+        padding: 50px 25px;
+    }
+}
+
+
+
+
+.overlay {
+    pointer-events: none;
+}
+
+.image-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.image-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
 
