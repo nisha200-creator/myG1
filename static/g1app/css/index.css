@@ -108,6 +108,120 @@
 }
 
 
+/* RESPONSIVE STYLE FOR HERO VIDEO SECTION */
+
+
+
+/* Large screens (laptops & small desktops) */
+@media (max-width: 1200px) {
+    .G1-text {
+        font-size: 150px;
+        letter-spacing: 8px;
+    }
+
+    .subtitle-text {
+        font-size: 130px;
+        letter-spacing: 6px;
+    }
+
+    .year-text {
+        font-size: 80px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .hero {
+        height: 90vh;
+    }
+
+    .hero-svg {
+        height: 65%;
+    }
+
+    .G1-text {
+        font-size: 120px;
+        letter-spacing: 6px;
+    }
+
+    .subtitle-text {
+        font-size: 100px;
+        letter-spacing: 5px;
+    }
+
+    .year-text {
+        font-size: 70px;
+    }
+
+    .f1-logo {
+        width: 80px;
+        top: 16%;
+    }
+}
+
+/* Mobile landscape */
+@media (max-width: 768px) {
+    .hero {
+        height: 85vh;
+    }
+
+    .hero-svg {
+        height: 60%;
+    }
+
+    .G1-text {
+        font-size: 90px;
+        letter-spacing: 4px;
+    }
+
+    .subtitle-text {
+        font-size: 75px;
+        letter-spacing: 4px;
+    }
+
+    .year-text {
+        font-size: 55px;
+    }
+
+    .f1-logo {
+        width: 70px;
+        top: 14%;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 576px) {
+    .hero {
+        height: 36vh;
+        
+    }
+
+    .hero-svg {
+        height: 55%;
+        margin-top: 20%;
+    }
+
+    .G1-text {
+        font-size: 300px;
+        letter-spacing: 3px;
+    }
+
+    .subtitle-text {
+        font-size: 180px;
+        letter-spacing: 3px;
+    }
+
+    .year-text {
+        font-size: 100px;
+    }
+
+    .f1-logo {
+        width: 60px;
+        top: 12%;
+    }
+}
+
+
 
 
 
@@ -377,10 +491,12 @@
     font-size: 14px;
 }
 
-.scroll-btn {
+/* .scroll-btn {
     background-color: transparent;
     color: var(--f1-text-color);
     border: 1px solid var(--f1-light-grey);
+
+
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -388,7 +504,40 @@
     font-size: 16px;
     line-height: 1;
     transition: all 0.2s;
+} */
+
+.scroll-btn{
+    /* position: relative; */
+    background: transparent;
+    color: var(--f1-text-color);
+    border-radius: 999px; 
+    border: 1px solid transparent;
+    background:
+        linear-gradient(transparent, transparent) padding-box,
+        linear-gradient(
+            90deg,
+            red,
+            color(display-p3 0.04 0.13 0.47),
+            red
+        ) border-box;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+
+    background-size: 100% 100%, 300% 300%;
+    animation: borderColorMove 4s linear infinite;
 }
+
+@keyframes borderColorMove{
+    0%   { background-position: 0% 0%,   0% 50%; }
+    100% { background-position: 0% 0%, 100% 50%; }
+}
+
+
+
+
+
+
 
 .video-carousel {
     display: flex;
@@ -947,9 +1096,63 @@ h1 {
     z-index: 10; 
 }
 
-.blue-bg { background: linear-gradient(135deg, #0d1a3a, #1a3360); }
+/* .blue-bg { background: linear-gradient(135deg, #0d1a3a, #1a3360); }
 .orange-bg { background: linear-gradient(135deg, #ff8c00, #e65c00); }
-.green-bg { background: linear-gradient(135deg, #004d40, #008060); }
+.green-bg { background: linear-gradient(135deg, #004d40, #008060); } */
+
+
+.blue-bg,
+.orange-bg,
+.green-bg {
+    background-size: 400% 400%;
+    animation: colorMotion 6s linear infinite;
+}
+
+/* Blue */
+.blue-bg {
+    background: linear-gradient(
+        120deg,
+        #0d1a3a,
+        #1a3360,
+        #3b6fd8,
+        #1a3360,
+        #0d1a3a
+    );
+}
+
+/* Orange */
+.orange-bg {
+    background: linear-gradient(
+        120deg,
+        #ff8c00,
+        #ffd194,
+        #e65c00,
+        #ffb347,
+        #ff8c00
+    );
+}
+
+/* Green */
+.green-bg {
+    background: linear-gradient(
+        120deg,
+        #004d40,
+        #00c9a7,
+        #008060,
+        #00b894,
+        #004d40
+    );
+}
+
+/* COLOR MOTION ONLY */
+@keyframes colorMotion {
+    0%   { background-position:   0% 50%; }
+    25%  { background-position:  50% 100%; }
+    50%  { background-position: 100% 50%; }
+    75%  { background-position:  50% 0%; }
+    100% { background-position:   0% 50%; }
+}
+
 
 .position {
     font-size: 3em;
@@ -959,6 +1162,9 @@ h1 {
     top: 20px;
     left: 20px;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+.sup {
+    font-size: medium;
 }
 
 .first-place {
